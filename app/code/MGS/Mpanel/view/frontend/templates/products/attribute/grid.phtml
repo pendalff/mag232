@@ -1,0 +1,164 @@
+<?php 
+	$_productCollection = $this->getAttributeProductByCategories($this->getCategoryIds(), $this->getAttribute());
+	$themeHelper = $this->helper('MGS\Mpanel\Helper\Data'); 
+	$_imagehelper = $this->helper('Magento\Catalog\Helper\Image');
+	$_catalogHelper = $this->helper('Magento\Catalog\Helper\Output');
+	$settings = $themeHelper->getThemeSettings();
+	$form_key = $block->getBlockHtml('formkey');
+	$quickViewHelper = $this->helper('MGS\QuickView\Helper\Data');
+	$showCompare = $settings['catalog']['compare_button'] ? false : true;
+	$hoverChange = $settings['catalog']['hover_change'] ? true : false;
+	$showWishList = $settings['catalog']['wishlist_button'] && $this->helper('Magento\Wishlist\Helper\Data')->isAllow() ? false : true;
+	$showReview = $settings['catalog']['review_count'] ? false : true;
+	$lazyLoad = $themeHelper->getStoreConfig('mgstheme/general/lazy_load');
+?>
+
+<div class="content-block category-product-cat-block products-grid">
+	<?php if($this->getData('mgs_panel_title') != "" || $this->getData('mgs_panel_note') != ""): ?>
+		<div class="content-heading">
+			<?php if($this->getData('mgs_panel_title') && $this->getData('mgs_panel_title') != ""): ?>
+				<h3 class="title"><?php echo $themeHelper->decodeHtmlTag($this->getData('mgs_panel_title')) ?></h3>
+			<?php endif ?>
+			<?php if($this->getData('mgs_panel_note') && $this->getData('mgs_panel_note') != ""): ?>
+				<div class="subtitle"><?php echo $themeHelper->decodeHtmlTag($this->getData('mgs_panel_note')) ?></div>
+			<?php endif ?>
+		</div>
+	<?php endif ?>
+	
+	<?php if(!$this->existAttribute($this->getAttribute())): ?>
+		<div role="alert" class="alert alert-warning"><?php echo __('Please create attribute "'.$this->getAttribute().'" or edit block to change attribute.') ?></div>
+	<?php else: ?>
+		<?php if (count($_productCollection)>0): ?>
+			<?php 
+				$blockId = rand() . time();
+				$useSlider = $this->getUseSlider();
+				$perRow = $this->getPerrow();
+				if($useSlider && $this->hasData('number_row') && $this->getNumberRow()>1){
+					$columnCount = $perRow * $this->getNumberRow();
+				}
+				$image = 'category_page_grid';
+				$themeSettings = $themeHelper->getThemeSettings();
+				$templateType = \Magento\Catalog\Block\Product\ReviewRendererInterface::SHORT_VIEW;
+				$col = $themeHelper->convertPerRowtoCol($perRow);
+				$autoPlay = $this->getAutoplay() ? 'true' : 'false';
+				$stopAuto = $this->getStopAuto() ? 'true' : 'false';
+				$nav = $this->getNavigation() ? 'true' : 'false';
+				$dot = $this->getPagination() ? 'true' : 'false';
+			?>
+			
+			<?php if($useSlider && $this->hasData('number_row') && $this->getNumberRow()>1): ?>
+				<?php $slideMultiRow = true; ?>
+				<?php $columnCount = $perRow * $this->getNumberRow(); ?>
+			<?php else: ?>
+				<?php $slideMultiRow = false; ?>
+			<?php endif ?>
+			
+			<div class="block widget mgs-products attribute-products-grid products-grid <?php if($useSlider && !$slideMultiRow): ?> row<?php endif ?><?php if($useSlider && $slideMultiRow): ?> multiple-row<?php endif ?>">
+				<div class="items<?php if($useSlider): ?> owl-carousel<?php else: ?> row row-wrapper row-<?php echo $perRow ?><?php endif ?>" id="attribute-products<?php echo $blockId; ?>">
+				
+					<?php 
+						$ratio = $this->getRatio();
+						$size = $themeHelper->getImageSize($ratio);
+						$padding = $themeHelper->getImagePadding($ratio);
+						$baseImage = $this->getViewFileUrl('MGS_Mpanel::images/blank'.$ratio.'.png');
+					?>
+					<?php $i=0; $j=0; foreach ($_productCollection as $_product): $i++; ?>
+						<?php 
+							$wlDataPost = $block->getAddToWishlistParams($_product);
+							$postParams = $block->getAddToCartPostParams($_product);
+							$review = $block->getReviewsSummaryHtml($_product, $templateType, $showReview);
+							$prdPrice = $block->getProductPrice($_product);
+							$swatches = $this->getLayout()->createBlock('Magento\Swatches\Block\Product\Renderer\Listing\Configurable')->setProduct($_product)->setTextSwatch($this->getSwatches())->setTemplate('Magento_Swatches::product/listing/renderer.phtml')->toHtml();
+						?>
+						<?php if($useSlider && $this->hasData('number_row') && $this->getNumberRow()>1): ?>
+							<?php if ($j++ % $columnCount == 0): ?>
+								<div class="item row row-wrapper row-<?php echo $perRow ?>">
+							<?php endif ?>
+						<?php endif ?>
+						
+						<div class="product product-item<?php if($slideMultiRow || !$this->hasData('number_row')): ?> col<?php endif ?>">
+							<?php echo $this->getLayout()
+										->createBlock('Magento\Framework\View\Element\Template')
+										->setProduct($_product)
+										->setThemeHelper($themeHelper)
+										->setImageHelper($_imagehelper)
+										->setCatalogHelperOutput($_catalogHelper)
+										->setRatio($ratio)
+										->setSize($size)
+										->setPadding($padding)
+										->setLazyLoadBaseImage($baseImage)
+										->setFk($form_key)
+										->setPostParams($postParams)
+										->setReview($review)
+										->setPrdPrice($prdPrice)
+										->setSwatches($swatches)
+										->setHoverChange($hoverChange)
+										->setQuickViewHelper($quickViewHelper)
+										->setCompare($showCompare)
+										->setWishList($showWishList)
+										->setWishListPost($wlDataPost)
+										->setLazyLoad($lazyLoad)
+										->setTemplate('MGS_Mpanel::products/product_item/grid/default.phtml')
+										->toHtml(); ?>
+											
+						</div>
+					<?php if($useSlider && $this->hasData('number_row') && $this->getNumberRow()>1): ?>
+						<?php if ($j % $columnCount == 0 || $j == count($_productCollection)): ?>
+							</div>
+						<?php endif ?>
+					<?php endif ?>
+					<?php endforeach; ?>
+				</div>
+				
+				<?php if($useSlider): ?>
+					<?php if($this->hasData('number_row') && $this->getNumberRow()>1):?>
+						<?php $perRow = 1; ?>
+					<?php endif ?>
+					<script type="text/javascript">
+						require([
+							'jquery',
+							'mgs/owlcarousel'
+						], function ($) {
+							var owlnewcattab<?php echo $blockId ?> = $('#attribute-products<?php echo $blockId ?>').owlCarousel({
+								items: <?php echo $perRow; ?>,
+								autoplay: <?php echo $autoPlay ?>,
+								autoplayHoverPause: <?php echo $stopAuto ?>,
+								nav: <?php echo $nav ?>,
+								dots: <?php echo $dot ?>,
+								autoHeight: true,
+								navText: ["<i class='ti-angle-left'></i>","<i class='ti-angle-right'></i>"],
+								<?php if(!$this->hasData('number_row') || $this->getNumberRow()==1):?>
+									responsive:{
+										0:{
+											items:1
+										},
+										480:{
+											items:2
+										},
+										768:{
+											items:<?php echo $perRow; ?>
+										}
+									}
+								<?php endif ?>
+							});
+						});
+					</script>
+				<?php else: ?>
+					<?php if (count($_productCollection)>0): ?>
+						<?php if(($this->hasData('loadmore') && $this->getData('loadmore')=='1') && ((!$this->getData('limit')) || (count($_productCollection) == $this->getData('limit')))): ?>
+							<div class="text-center toolbar-loadmore">
+								<a class="btn btn-primary btn-loadmore" href="<?php echo $this->getUrl('mpanel/index/loadmore', ['type'=>'attribute-products-category', 'category'=>$this->getCategoryIds(), 'perrow'=>$perRow, 'limit'=>$this->getLimit(), 'ratio'=>$this->getRatio(), 'col'=>$col, 'block_id'=>$blockId, 'tabs'=>0, 'attribute'=>$this->getAttribute(), 'p'=>2]) ?>"><span><?php echo __('Load More') ?></span></a>
+							</div>
+						<?php endif ?>
+					<?php endif ?>
+				<?php endif ?>
+			</div>
+			
+			<?php if($themeHelper->isActiveModule('MGS_Guestwishlist')): ?>
+				<?php echo $this->getLayout()->createBlock('MGS\Guestwishlist\Block\AddToWishlist')->setCollectionProduct($_productCollection)->setTemplate('MGS_Guestwishlist::addto.phtml')->toHtml(); ?>
+			<?php endif ?>
+		<?php else: ?>
+			<div role="alert" class="alert alert-warning"><?php echo __('There are no products matching the selection.') ?></div>
+		<?php endif ?>
+	<?php endif ?>
+</div>

@@ -1,0 +1,76 @@
+<?php $_productCollection = $this->getCollection() ?>
+<?php $themeHelper = $this->helper('MGS\Mpanel\Helper\Data'); ?>
+
+<div class="content-block sale-product-block">
+	<?php // Block Content  ?>
+	<?php if (count($_productCollection)): ?>
+		<?php $_imagehelper = $this->helper('Magento\Catalog\Helper\Image'); ?>
+		<?php $_catalogHelper = $this->helper('Magento\Catalog\Helper\Output'); ?>
+		<?php $quickViewHelper = $this->helper('MGS\QuickView\Helper\Data'); ?>
+		
+		<?php 
+			$padding = $themeHelper->getImagePadding();
+			$size = $themeHelper->getImageSize();
+			$ratio = $themeHelper->getRatioCate();
+			$baseImage = $this->getViewFileUrl('MGS_Mpanel::images/blank'.$ratio.'.png');
+			$settings = $themeHelper->getThemeSettings();
+			$perrow = $settings['catalog']['per_row'];
+			$templateType = \Magento\Catalog\Block\Product\ReviewRendererInterface::SHORT_VIEW;
+			$showCompare = $settings['catalog']['compare_button'] ? false : true;
+			$showWishList = $settings['catalog']['wishlist_button'] && $this->helper('Magento\Wishlist\Helper\Data')->isAllow() ? false : true;
+			$hoverChange = $settings['catalog']['hover_change'] ? true : false;
+			$showReview = $settings['catalog']['review_count'] ? false : true;
+			$lazyLoad = $themeHelper->getStoreConfig('mgstheme/general/lazy_load');
+		?>
+
+		<div class="products wrapper grid products-grid sale-products-grid">
+			<ol class="products list items product-items row row-wrapper row-<?php echo $perrow ?>">
+				<?php foreach ($_productCollection as $_product): ?>
+					<?php $prdPrice = $block->getProductPrice($_product) ?>
+					<?php 
+						$wlDataPost = $block->getAddToWishlistParams($_product);
+						$postParams = $block->getAddToCartPostParams($_product);
+						$form_key = $block->getBlockHtml('formkey');
+						$review = "";
+						if($showReview){
+							$review = $block->getReviewsSummaryHtml($_product, $templateType); 
+						}
+						
+						$prdPrice = $block->getProductPrice($_product);
+						$swatches = $this->getLayout()->createBlock('Magento\Swatches\Block\Product\Renderer\Listing\Configurable')->setProduct($_product)->setTextSwatch($this->getSwatches())->setTemplate('Magento_Swatches::product/listing/renderer.phtml')->toHtml();
+					?>
+					<li class="item product product-item col">
+						<?php echo $this->getLayout()
+									->createBlock('Magento\Framework\View\Element\Template')
+									->setProduct($_product)
+									->setThemeHelper($themeHelper)
+									->setImageHelper($_imagehelper)
+									->setCatalogHelperOutput($_catalogHelper)
+									->setRatio($ratio)
+									->setSize($size)
+									->setPadding($padding)
+									->setLazyLoadBaseImage($baseImage)
+									->setFk($form_key)
+									->setPostParams($postParams)
+									->setReview($review)
+									->setPrdPrice($prdPrice)
+									->setSwatches($swatches)
+									->setHoverChange($hoverChange)
+									->setQuickViewHelper($quickViewHelper)
+									->setCompare($showCompare)
+									->setWishList($showWishList)
+									->setWishListPost($wlDataPost)
+									->setLazyLoad($lazyLoad)
+									->setTemplate('MGS_Mpanel::products/product_item/grid/default.phtml')
+									->toHtml(); ?>
+					</li>
+				<?php endforeach; ?>
+			</ol>
+		</div>
+		<div class="toolbar toolbar-products sale-off-toolbar">
+			<?php echo $this->getPagerHtml() ?>
+		</div>
+	<?php else: ?>
+		<div role="alert" class="alert alert-warning"><?php echo __('There are no products matching the selection.') ?></div>
+	<?php endif ?>
+</div>

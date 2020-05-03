@@ -1,0 +1,19 @@
+<script type="text/javascript">
+	require([
+		'jquery',
+		'mgs/lazyload'
+	], function(jQuery){
+		(function($) {
+            $(document).ready(function() {
+                $("img.lazy").unveil(200, function(){
+                    var self = $(this);
+					self.load(function() {
+						this.style.opacity = 1;
+						self.removeClass('lazy');
+						self.parent().closest('.lazy-img').addClass('loaded');
+					});
+                });
+            });
+		})(jQuery);
+	});
+</script>

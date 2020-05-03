@@ -1,0 +1,171 @@
+<?php 
+	$_productCollection = $this->getSaleProductByCategories($this->getCategoryIds());
+	$themeHelper = $this->helper('MGS\Mpanel\Helper\Data');
+?>
+
+
+<div class="content-block sale-products-block sale-products-list-block">
+	<?php if($this->getData('mgs_panel_title') != "" || $this->getData('mgs_panel_note') != ""): ?>
+		<div class="content-heading">
+			<?php if($this->getData('mgs_panel_title')): ?>
+				<h3 class="title"><?php echo $themeHelper->decodeHtmlTag($this->getData('mgs_panel_title')) ?></h3>
+			<?php endif ?>
+			<?php if($this->getData('mgs_panel_note')): ?>
+				<div class="subtitle"><?php echo $themeHelper->decodeHtmlTag($this->getData('mgs_panel_note')) ?></div>
+			<?php endif ?>
+		</div>
+	<?php endif ?>
+	
+	<?php if ($_productCollection->count()): ?>
+		<?php
+			$_helper = $this->helper('Magento\Catalog\Helper\Output');
+			$_imagehelper = $this->helper('Magento\Catalog\Helper\Image');
+			$quickViewHelper = $this->helper('MGS\QuickView\Helper\Data');
+		?>
+		<?php
+			$templateType = \Magento\Catalog\Block\Product\ReviewRendererInterface::SHORT_VIEW;
+			
+			$settings = $themeHelper->getThemeSettings();
+			$showCompare = $settings['catalog']['compare_button'] ? false : true;
+			$showWishList = $settings['catalog']['wishlist_button'] && $this->helper('Magento\Wishlist\Helper\Data')->isAllow() ? false : true;
+			$showReview = $settings['catalog']['review_count'] ? false : true;
+			$lazyLoad = $themeHelper->getStoreConfig('mgstheme/general/lazy_load');
+			$form_key = $block->getBlockHtml('formkey');
+		?>
+		<?php 
+			$blockId = rand() . time(); 
+			$ratio = $this->getRatio();
+			$size = $themeHelper->getImageSize($ratio);
+			$padding = $themeHelper->getImagePadding($ratio);
+			$baseImage = $this->getViewFileUrl('MGS_Mpanel::images/blank'.$ratio.'.png');
+			$useSlider = $this->getUseSlider();
+			$numberCol = $this->getNumbercol();
+			$numberOfCol = $this->getPercol();
+			$onRow = $numberCol * $numberOfCol;
+		?>
+		
+		<div class="block widget list-products mgs-sale-products sale-products-list <?php if($useSlider): ?>product-list-carousel<?php endif ?>">
+			<div class="block-content">
+				<?php if($useSlider): ?>
+					<div class="owl-carousel" id="sale-products-list-carousel-<?php echo $blockId; ?>">
+					<?php $i=0; foreach($_productCollection as $_product): $i++; ?>
+						<?php 
+							$wlDataPost = $block->getAddToWishlistParams($_product);
+							$postParams = $block->getAddToCartPostParams($_product);
+							$review = $block->getReviewsSummaryHtml($_product, $templateType, $showReview);
+							$prdPrice = $block->getProductPrice($_product);
+							$swatches = $this->getLayout()->createBlock('Magento\Swatches\Block\Product\Renderer\Listing\Configurable')->setProduct($_product)->setTextSwatch($this->getSwatches())->setTemplate('Magento_Swatches::product/listing/renderer.phtml')->toHtml();
+						?>
+						<?php if($numberCol > 1 && $i % $numberOfCol == 1): ?>
+							<div class="col">
+						<?php endif ?>
+								<div class="item product product-item">
+								<?php echo $this->getLayout()
+												->createBlock('Magento\Framework\View\Element\Template')
+												->setProduct($_product)
+												->setThemeHelper($themeHelper)
+												->setImageHelper($_imagehelper)
+												->setCatalogHelperOutput($_helper)
+												->setQuickViewHelper($quickViewHelper)
+												->setRatio($ratio)
+												->setSize($size)
+												->setPadding($padding)
+												->setLazyLoadBaseImage($baseImage)
+												->setCompare($showCompare)
+												->setFk($form_key)
+												->setPostParams($postParams)
+												->setReview($review)
+												->setPrdPrice($prdPrice)
+												->setWishList($showWishList)
+												->setWishListPost($wlDataPost)
+												->setLazyLoad($lazyLoad)
+												->setTemplate('MGS_Mpanel::products/product_item/list/widget_item.phtml')
+												->setSwatches($swatches)
+												->toHtml(); ?>
+								</div>
+						<?php if($numberCol > 1 && ($i % $numberOfCol == 0 || $i == count($_productCollection))): ?>
+							</div>
+						<?php endif ?>
+					<?php endforeach ?>
+					</div>
+					<script type="text/javascript">
+						require([
+							'jquery',
+							'mgs/owlcarousel'
+						], function ($) {
+							$('#sale-products-list-carousel-<?php echo $blockId; ?>').owlCarousel({
+								items: <?php echo $numberCol ?>,
+								autoplay: <?php echo $this->getAutoplay() ? 'true' : 'false'; ?>,
+								autoplayHoverPause: <?php echo $this->getStopAuto() ? 'true' : 'false'; ?>,
+								nav: <?php echo $this->getNavigation() ? 'true' : 'false'; ?>,
+								dots: <?php echo $this->getPagination() ? 'true' : 'false'; ?>,
+								navText: ["<i class='fa fa-angle-left'></i>","<i class='fa fa-angle-right'></i>"],
+								<?php if($numberCol > 1): ?>
+								responsive:{
+									0:{
+										items:1
+									},
+									768:{
+										items:2
+									},
+									992:{
+										items:<?php echo $numberCol; ?>
+									}
+								}
+								<?php endif ?>
+							});
+						});
+					</script>
+				<?php else: ?>
+					<?php if($numberCol > 1): ?>
+						<div class="row row-wrapper row-<?php echo $numberCol ?>">
+					<?php endif ?>
+					<?php $i=0; foreach($_productCollection as $_product): $i++; ?>
+						<?php 
+							$wlDataPost = $block->getAddToWishlistParams($_product);
+							$postParams = $block->getAddToCartPostParams($_product);
+							$review = $block->getReviewsSummaryHtml($_product, $templateType, $showReview);
+							$prdPrice = $block->getProductPrice($_product);
+							$swatches = $this->getLayout()->createBlock('Magento\Swatches\Block\Product\Renderer\Listing\Configurable')->setProduct($_product)->setTextSwatch($this->getSwatches())->setTemplate('Magento_Swatches::product/listing/renderer.phtml')->toHtml();
+						?>
+						<?php if($numberCol > 1 && $i % $numberOfCol == 1): ?>
+							<div class="col">
+						<?php endif ?>
+								<div class="item product product-item">
+								<?php echo $this->getLayout()
+												->createBlock('Magento\Framework\View\Element\Template')
+												->setProduct($_product)
+												->setThemeHelper($themeHelper)
+												->setImageHelper($_imagehelper)
+												->setCatalogHelperOutput($_helper)
+												->setQuickViewHelper($quickViewHelper)
+												->setRatio($ratio)
+												->setSize($size)
+												->setPadding($padding)
+												->setLazyLoadBaseImage($baseImage)
+												->setCompare($showCompare)
+												->setFk($form_key)
+												->setPostParams($postParams)
+												->setReview($review)
+												->setPrdPrice($prdPrice)
+												->setWishList($showWishList)
+												->setWishListPost($wlDataPost)
+												->setLazyLoad($lazyLoad)
+												->setTemplate('MGS_Mpanel::products/product_item/list/widget_item.phtml')
+												->setSwatches($swatches)
+												->toHtml(); ?>
+								</div>
+						<?php if($numberCol > 1 && ($i % $numberOfCol == 0 || $i == count($_productCollection))): ?>
+							</div>
+						<?php endif ?>
+					<?php endforeach ?>
+					<?php if($numberCol > 1): ?>
+						</div>
+					<?php endif ?>
+				<?php endif ?>
+			</div>
+		</div>
+	<?php else: ?>
+		<div role="alert" class="alert alert-warning"><?php echo __('There are no products matching the selection.') ?></div>
+	<?php endif ?>
+</div>

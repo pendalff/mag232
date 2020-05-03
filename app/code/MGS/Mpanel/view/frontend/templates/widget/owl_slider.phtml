@@ -1,0 +1,93 @@
+<?php $html = $this->getHtmlSlider(); ?>
+<?php $fullwidth = $this->getFullscreen(); ?>
+<?php $fullheight = $this->getFullheight(); ?>
+<?php $offset = $this->getOffset(); ?>
+
+<?php if($html != ""): ?>
+	<?php $tpControls = $this->getTemplateControls() ?>
+	<?php $customclass = $this->getCustomclass() ?>
+	<?php $blockId = rand() . time(); ?>
+	<?php $animated = $this->getAnimateSlider(); ?>
+	
+    <div id="page-header-sliders" class="slider-<?php echo $blockId ?> page-header-sliders template-<?php echo $tpControls ?> <?php if($fullheight): ?> fullscreen-slider<?php endif ?><?php if($fullwidth): ?> full-width<?php endif ?>">
+    
+        <?php if($fullwidth): ?><div class="row"><?php endif ?>
+        <div id="mgs-slider-<?php echo $blockId ?>" class="slider_mgs_carousel owl-carousel">
+            <?php echo html_entity_decode($html) ?>
+        </div>
+        <?php if($fullwidth): ?></div><?php endif ?>
+        <?php if($tpControls != 2): ?>
+			<div style="display: none;" class="index-slider"><span class="current">01</span><span class="all-index"></span></div>
+		<?php endif ?>
+    </div>
+    
+	<script type="text/javascript">
+		require([
+			'jquery',
+			'mgs/owlcarousel'
+		], function(jQuery){
+			(function($) {
+				<?php if($fullheight): ?>
+                    var sliderHeight = $(window).height();
+                    var offset = 0;
+                    <?php if($offset): ?>
+                        var offset = $('<?php echo $offset ?>').height();
+                    <?php endif ?>
+                    
+					$(".fullscreen-slider").height(sliderHeight - offset);
+					
+					$(window).resize(function() {
+						$(".fullscreen-slider").height($(window).height() - offset);
+					});
+				<?php endif ?>
+				
+                var sliderHome = $("#mgs-slider-<?php echo $blockId ?>");
+				
+                sliderHome.on('initialized.owl.carousel', function(event) {
+					<?php if($tpControls != 2): ?>
+						$('.slider-<?php echo $blockId ?> .all-index').html(('0' + event.item.count).slice(-2));
+						$('.slider-<?php echo $blockId ?> .index-slider').show();
+						<?php endif ?>
+                    setTimeout(function(){
+                        $("#page-header-sliders").addClass('loaded');
+                    }, 500);
+                });
+                
+				sliderHome.owlCarousel({
+					items: 1,
+                    rtl: RTL,
+					loop: <?php echo $this->getLoop(); ?>,
+					nav: <?php echo $this->getControlNav(); ?>,
+					dots: <?php echo $this->getControlDots(); ?>,
+					autoplayTimeout: <?php echo $this->getAutoSpeed(); ?>,
+					autoplay: <?php echo $this->getAutoPlay(); ?>,
+					autoplayHoverPause: <?php echo $this->getStopAuto() ? 'true' : 'false'; ?>,
+					animateOut: '<?php echo $animated['out'] ?>',
+					animateIn: '<?php echo $animated['in'] ?>',
+					navText: ["<i class='ti-angle-left'></i>","<i class='ti-angle-right'></i>"],
+                    responsive:{
+                        0:{
+                            nav: false,
+                            dots: true
+                        },
+                        992:{
+                            nav: <?php echo $this->getControlNav(); ?>,
+                            dots: <?php echo $this->getControlDots(); ?>
+                        }
+                    }
+				}).on('changed.owl.carousel', function(event) {
+					<?php if($tpControls != 2): ?>
+						var index = event.item.index - 1;
+						var count = event.item.count;
+						if (index > count) { index -= count; }
+						if (index <= 0) { index += count; }
+						$('.slider-<?php echo $blockId ?> .index-slider .current').html(('0' + index).slice(-2));
+					<?php endif ?>
+                });
+				
+			})(jQuery);
+		});
+	</script>
+<?php else: ?>
+	<div role="alert" class="alert alert-warning"><?php echo __('There are no sliders matching the selection.') ?></div>
+<?php endif ?>

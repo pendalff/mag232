@@ -1,0 +1,33 @@
+ <?php
+/**
+ * Copyright © 2016 Magento. All rights reserved.
+ * See COPYING.txt for license details.
+ */
+?>
+
+<div class="top-sidebar">
+	<h5 class="title"><?php echo __('Sidebar') ?></h5>
+</div>
+<button class="btn btn-navbar navbar_sidebar" id="navbar_sidebar">
+	<i class="icon pe-7s-edit" ></i>
+</button>
+
+<script type="text/javascript">
+	require([
+		'jquery'
+	], function($){
+		$("#navbar_sidebar").click(function () { 
+			$(this).parent().addClass('enable-sidebar');
+			$('body').addClass('active-sidebar');
+			
+		});
+		
+		$(document).mouseup(function(e) {
+			var ctContentSidebar = $(".sidebar.col");
+			if (!ctContentSidebar.is(e.target) && ctContentSidebar.has(e.target).length === 0) {
+				ctContentSidebar.removeClass('enable-sidebar');
+				$('body').removeClass('active-sidebar');
+			}
+		});
+	});
+</script>

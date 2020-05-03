@@ -1,0 +1,35 @@
+<div id="ajax_wishlist_loading">
+	<input type="hidden" name="form_key" value="<?php echo $block->getFormKey();?>" />
+    <div class="ajax_header">
+        <span data-text="<?php echo __('Something went wrong'); ?>"><?php echo __('1 item added to your Wish List'); ?></span>
+        <div class="action-close"><span class="pe-7s-close"></span></div>
+    </div>
+    <div class="ajax_content">
+        <div class="wishlist-product-confirm">
+            <div class="product-confirm-image"><img src="" alt="" class="img-responsive" /></div>
+            <div class="product-confirm-detail">
+                <div class="product-confirm-name"></div>
+                <div class="product-confirm-qty"><span class="title"><?php echo __('Quantity') ?></span><span class="value"></span></div>
+            </div>
+        </div>
+    </div>
+    <div class="ajax_footer">
+        <div class="actions">
+            <a class="btn btn-primary btn-close action-close" href="javascript:void(0);"><?php echo __('Continue Shopping'); ?></a>
+            <a class="btn btn-primary link-to-wishlist" href="<?php echo $this->getUrl('guestwishlist') ?>" data-guest="<?php echo $this->getUrl('guestwishlist') ?>" data-href="<?php echo $this->getUrl('wishlist') ?>"><?php echo __('View Wish List'); ?></a>
+        </div>
+    </div>
+</div>
+<script type="text/javascript">
+require([
+	'jquery'
+], function($){
+	$('#ajax_wishlist_loading .action-close').click(function(){
+		$("body").removeClass('ajwl_show');
+		$("#ajax_wishlist_loading").removeClass('_show');
+		$('#ajax_wishlist_loading .ajax_header > span').html($.mage.__('1 item added to your Wish List'));
+		$('#ajax_wishlist_loading .ajax_content .wishlist-product-confirm').show();
+		$('#ajax_wishlist_loading .alert-warning').remove();
+	});
+});
+</script>

@@ -1,0 +1,319 @@
+/**
+ * Copyright © 2015 Magento. All rights reserved.
+ * See COPYING.txt for license details.
+ */
+
+.swatch-attribute-label {
+    font-weight: bold;
+    position: relative;
+}
+
+.swatch-attribute-label.required {
+    padding-right: 10px;
+}
+
+.swatch-attribute-label[data-required="1"]:after {
+    content: '*';
+    color: red;
+    position: absolute;
+    right: -11px;
+    top: -2px;
+    font-weight: bold;
+    font-size: 1em;
+}
+
+.swatch-attribute-selected-option {
+    color: #646464;
+    padding-left: 17px;
+}
+
+.swatch-attribute-options:after {
+    content: "";
+	display: table;
+	clear: both;
+}
+
+.swatch-option {
+    width: 16px;
+	height: 16px;
+	border-radius: 20px;
+	float: left;
+	position: relative;
+	border: 1px solid #ddd;
+    cursor: pointer;
+}
+.swatch-option + .swatch-option {
+	margin-left: 5px;
+}
+
+.swatch-option:after, .swatch-option:before {
+    position: absolute;
+    -webkit-transform: translate3d(0,0,0);
+    -moz-transform: translate3d(0,0,0);
+    transform: translate3d(0,0,0);
+    visibility: hidden;
+    opacity: 0;
+    z-index: 1000000;
+    pointer-events: none;
+    -webkit-transition: opacity .3s ease,visibility .3s ease,-webkit-transform .3s cubic-bezier(.71,1.7,.77,1.24);
+    -moz-transition: opacity .3s ease,visibility .3s ease,-moz-transform .3s cubic-bezier(.71,1.7,.77,1.24);
+    transition: opacity .3s ease,visibility .3s ease,transform .3s cubic-bezier(.71,1.7,.77,1.24);
+    -webkit-transition-delay: 0s;
+    -moz-transition-delay: 0s;
+    transition-delay: 0s;
+    bottom: 100%;
+    left: 50%;
+}
+
+.swatch-option:after {
+    content: attr(option-label);
+    border-radius: 4px;
+    -webkit-transform: translateX(-50%);
+    -moz-transform: translateX(-50%);
+    transform: translateX(-50%);
+	background: #383838;
+	color: #fff;
+	padding: 8px 10px;
+	font-size: 12px;
+	font-family: "Helvetica Neue",Helvetica,Arial,sans-serif;
+	line-height: 12px;
+	white-space: nowrap;
+	text-shadow: 0 -1px 0 #000;
+	box-shadow: 4px 4px 8px rgba(0,0,0,.3);
+}
+.swatch-option:before {
+    content: '';
+    position: absolute;
+    background: 0 0;
+    border: 6px solid transparent;
+    z-index: 1000001;
+	border-top-color: #383838;
+	margin-bottom: -11px;
+	left: calc(50% - 6px);
+    bottom: 100%;
+}
+.swatch-option:hover:before {
+    -webkit-transform: translateY(-8px);
+    -moz-transform: translateY(-8px);
+    transform: translateY(-8px);
+}
+.swatch-option:hover:after {
+    -webkit-transform: translateX(-50%) translateY(-8px);
+    -moz-transform: translateX(-50%) translateY(-8px);
+    transform: translateX(-50%) translateY(-8px);
+}
+.swatch-option:hover:after, 
+.swatch-option:hover:before {
+    visibility: visible;
+    opacity: 1;
+    -webkit-transition-delay: .1s;
+    -moz-transition-delay: .1s;
+    transition-delay: .1s;
+}
+.swatch-option.text {
+    background: #F2F2F2;
+    color: #7F7F7F;
+    font-size: 12px;
+    font-weight: 700;
+    line-height: 20px;
+    padding: 4px 8px;
+    min-width: 22px;
+    margin-right: 7px;
+}
+
+.swatch-option.selected {
+    color: #333;
+	box-shadow: 0 0 5px #333;
+}
+
+.swatch-option.text.selected {
+    background-color: #FFF !important;
+}
+
+.clearfix:after {
+    content: " ";
+    visibility: hidden;
+    display: block;
+    height: 0;
+    clear: both;
+}
+
+.swatch-attribute.size .swatch-option, .swatch-attribute.manufacturer .swatch-option {
+    background: rgb(240, 240, 240);
+    color: rgb(148, 148, 148);
+}
+
+.swatch-attribute.size .swatch-option.selected, .swatch-attribute.manufacturer .swatch-option.selected {
+    color: black;
+    background: #fff;
+    border: 1px solid #fff;
+}
+
+.swatch-option.image:not(.disabled):hover:after,
+.swatch-option.color:not(.disabled):hover:after {
+    opacity: 1;
+	visibility: visible;
+}
+
+.swatch-option.disabled {
+    cursor: default;
+}
+
+.swatch-option.disabled:after {
+    content: '';
+    position: absolute;
+    left: 0;
+    right: 0;
+    top:0;
+    bottom: 0;
+    background: -moz-linear-gradient(to left top,  rgba(255,255,255,0) 0%, rgba(255,255,255,0) 42%, rgba(255,255,255,1) 43%, rgba(255,255,255,1) 46%, rgba(255,82,22,1) 47%, rgba(255,82,22,1) 53%, rgba(255,255,255,1) 54%, rgba(255,255,255,1) 57%, rgba(255,255,255,0) 58%, rgba(255,255,255,0) 100%);
+    background: -webkit-gradient(linear, left top, right bottom, color-stop(0%,rgba(255,255,255,0)), color-stop(42%,rgba(255,255,255,0)), color-stop(43%,rgba(255,255,255,1)), color-stop(46%,rgba(255,255,255,1)), color-stop(47%,rgba(255,82,22,1)), color-stop(53%,rgba(255,82,22,1)), color-stop(54%,rgba(255,255,255,1)), color-stop(57%,rgba(255,255,255,1)), color-stop(58%,rgba(255,255,255,0)), color-stop(100%,rgba(255,255,255,0)));
+    background: -webkit-linear-gradient(to left top,  rgba(255,255,255,0) 0%,rgba(255,255,255,0) 42%,rgba(255,255,255,1) 43%,rgba(255,255,255,1) 46%,rgba(255,82,22,1) 47%,rgba(255,82,22,1) 53%,rgba(255,255,255,1) 54%,rgba(255,255,255,1) 57%,rgba(255,255,255,0) 58%,rgba(255,255,255,0) 100%);
+    background: -o-linear-gradient(to left top,  rgba(255,255,255,0) 0%,rgba(255,255,255,0) 42%,rgba(255,255,255,1) 43%,rgba(255,255,255,1) 46%,rgba(255,82,22,1) 47%,rgba(255,82,22,1) 53%,rgba(255,255,255,1) 54%,rgba(255,255,255,1) 57%,rgba(255,255,255,0) 58%,rgba(255,255,255,0) 100%);
+    background: -ms-linear-gradient(to left top,  rgba(255,255,255,0) 0%,rgba(255,255,255,0) 42%,rgba(255,255,255,1) 43%,rgba(255,255,255,1) 46%,rgba(255,82,22,1) 47%,rgba(255,82,22,1) 53%,rgba(255,255,255,1) 54%,rgba(255,255,255,1) 57%,rgba(255,255,255,0) 58%,rgba(255,255,255,0) 100%);
+    background: linear-gradient(to left top,  rgba(255,255,255,0) 0%,rgba(255,255,255,0) 42%,rgba(255,255,255,1) 43%,rgba(255,255,255,1) 46%,rgba(255,82,22,1) 47%,rgba(255,82,22,1) 53%,rgba(255,255,255,1) 54%,rgba(255,255,255,1) 57%,rgba(255,255,255,0) 58%,rgba(255,255,255,0) 100%);
+    filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#00ffffff', endColorstr='#00ffffff',GradientType=1 );
+}
+
+.swatch-option-tooltip {
+	display: none !important;
+}
+.swatch-option-tooltip .corner,
+.swatch-option-tooltip-layered .corner {
+	left: auto !important;;
+	right: auto !important;
+    height: 8px;
+	position: relative;
+	display: none;
+}
+.swatch-option-tooltip .corner:after,
+.swatch-option-tooltip-layered .corner:after {
+	position: absolute;
+	content: "";
+	width: 0;
+	left: 50% !important;
+	transform: translateX(-50%);
+	-moz-transform: translateX(-50%);
+	-ms-transform: translateX(-50%);
+	-o-transform: translateX(-50%);
+	-webkit-transform: translateX(-50%);
+	top: 100%;
+	border-top: 8px solid #adadad;
+	border-bottom: 8px solid transparent;
+	border-left: 8px solid transparent;
+	border-right: 8px solid transparent;
+}
+.swatch-option-tooltip .corner:before,
+.swatch-option-tooltip-layered .corner:after {
+	position: absolute;
+	content: "";
+	width: 0;
+	left: 50% !important;
+	transform: translateX(-50%);
+	-moz-transform: translateX(-50%);
+	-ms-transform: translateX(-50%);
+	-o-transform: translateX(-50%);
+	-webkit-transform: translateX(-50%);
+	top: 100%;
+	border-top: 7px solid #fff;
+	border-bottom: 7px solid transparent;
+	border-left: 7px solid transparent;
+	border-right: 7px solid transparent;
+	z-index: 1;
+}
+.swatch-option-tooltip .image,
+.swatch-option-tooltip-layered .image {
+    display: none;
+}
+
+.swatch-option-tooltip .title {
+	background-color: #333;
+	color: #fff;
+	border-radius: 2px;
+    max-width: 140px;
+    text-align: center;
+    display: block;
+    overflow: hidden;
+}
+
+.swatch-opt {
+    margin: 20px 0;
+}
+
+.swatch-more {
+    display: inline-block;
+    margin: 2px 0;
+    text-decoration: none !important;
+    position: static;
+    z-index: 1;
+}
+
+/* Layered Features */
+.swatch-option-link-layered {
+    position: relative;
+    margin: 0 !important;
+    padding: 0 !important;
+}
+
+.swatch-option-tooltip-layered {
+    width: 140px;
+    position: absolute;
+    background: #fff;
+    color: rgb(148, 148, 148);
+    border: 1px solid #adadad;
+    display: none;
+    z-index: 999;
+    left: -47px;
+}
+
+.swatch-visual-tooltip-layered {
+    height: 160px;
+    top: -170px;
+}
+
+.swatch-textual-tooltip-layered {
+    height: 30px;
+    top: -40px;
+}
+
+.swatch-option-link-layered:hover > .swatch-option-tooltip-layered {
+    display: block;
+}
+
+.swatch-attribute-options .swatch-option-tooltip-layered .title {
+    width: 100%;
+    height: 20px;
+    position: absolute;
+    bottom: -5px;
+    left: 0;
+    color: rgb(40, 40, 40);
+    text-align: center;
+    margin-bottom: 10px;
+}
+
+.swatch-option-disabled:after {
+    content: '';
+    position: absolute;
+    width: 42px;
+    height: 2px;
+    background: red;
+    transform: rotate(-30deg);
+    -o-transform: rotate(-30deg);
+    -moz-transform: rotate(-30deg);
+    -ms-transform: rotate(-30deg);
+    -webkit-transform: rotate(-30deg);
+    z-index: 995;
+    left: -4px;
+    top: 10px;
+}
+
+.swatch-option-disabled {
+    outline: none !important;
+    cursor: default;
+    border: 0;
+}
+
+/* Bugfix for Add To Cart button */
+div[class^="swatch-opt-"] {
+    margin-bottom: 10px;
+}

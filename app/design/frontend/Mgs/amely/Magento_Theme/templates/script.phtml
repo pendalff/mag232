@@ -1,0 +1,243 @@
+<?php $themeHelper = $this->helper('MGS\Mpanel\Helper\Data'); ?>
+<?php if($themeHelper->getStoreConfig('mgstheme/header/sticky_menu') && ($themeHelper->getStoreConfig('mgstheme/header/header') != 'header_8')): ?>
+	<script type="text/javascript">
+		require([
+			'jquery'
+		], function(jQuery){
+			(function($) {
+				$(document).ready(function(){
+					var height_header = $('.header').height() + $('.megamenu-content').height();
+					var check_height = $(window).height();
+					var body_height = $('body').height() - 250 -  height_header;
+					if(body_height > check_height){
+						$(window).scroll(function(){
+							if(!$('body').hasClass('catalog-category-view page-layout-1column')){
+								if($(this).scrollTop() > 200){
+									$('.header').addClass('active-sticky');
+								}else {
+									$('.header').removeClass('active-sticky');
+								}
+							}
+						});
+					}
+				});
+			})(jQuery);
+		});
+	</script>
+<?php endif ?>
+<?php if($themeHelper->getStoreConfig('mgstheme/header/sticky_up')): ?>
+	<script type="text/javascript">
+		require([
+			'jquery'
+		], function(jQuery){
+			(function($) {
+				$(document).ready(function(){
+					
+					$('main').append('<div id="pd-sticky"></div>');
+					$( ".header" ).after( $( "#pd-sticky"));
+					$(window).scroll(function(){
+						$(".header").css("position", "fixed");
+						$(".header").css("background-color", "white");	
+					});
+
+					function setHeight() {
+						var result = $("header").height();
+						$('#pd-sticky').css('min-height', result);
+					};
+					setHeight();	  
+					$(window).resize(function() {
+						setHeight();
+					});
+					/*menu up*/
+					var didScroll;
+					var lastScrollTop = 0;
+					var delta = 5;
+					var navbarHeight = $('header').height();
+
+					$(window).scroll(function(event){
+						didScroll = true;
+					});
+
+					setInterval(function() {
+						if (didScroll) {
+							hasScrolled();
+							didScroll = false;
+						}
+					}, 250);
+
+					function hasScrolled() {
+						var st = $(this).scrollTop();
+						
+						if(Math.abs(lastScrollTop - st) <= delta)
+							return;
+						if (st > navbarHeight){
+							// Scroll up
+							$('header').addClass('nav-down').removeClass('nav-up');
+							if (st < navbarHeight){
+								$('header').addClass('nav-up');
+							}else {
+								if (st < lastScrollTop && st > navbarHeight){
+									$('header').addClass('nav-up').removeClass('nav-down');
+								}
+							}
+						} 
+						else {
+							if(st + $(window).height() < $(document).height()) {
+								$('header').removeClass('nav-up').removeClass('nav-down');
+							}
+						}
+						
+						lastScrollTop = st;
+					}
+				});
+			})(jQuery);
+		});
+	</script>
+<?php endif ?>
+<?php if($themeHelper->getStoreConfig('mgstheme/general/back_to_top')): ?>
+	<a href="#" class="scroll-to-top"><i class="fa fa-arrow-up"></i></a>
+	<script type="text/javascript">
+		require([
+			'jquery'
+		], function(jQuery){
+			(function($) {
+				$(window).scroll(function(){
+					if ($(this).scrollTop() > 1) {
+						$('.scroll-to-top').css({bottom:"25px"});
+					} else {
+						$('.scroll-to-top').css({bottom:"-100px"});
+					}
+				});
+
+				$('.scroll-to-top').click(function(){
+					$('html, body').animate({scrollTop: '0px'}, 800);
+					return false;
+				});
+			})(jQuery);
+		});
+	</script>
+<?php endif ?>
+
+<?php if (!$themeHelper->getStoreConfig('checkout/cart/redirect_to_cart')) : ?>
+	<script type="text/x-magento-init">
+	{
+		"[data-role=tocart-form], .form.map.checkout": {
+			"catalogAddToCart": {}
+		}
+	}
+	</script>
+<?php endif; ?>	
+
+<!-- Change Add to cart button to icon cart -->
+<script type="text/javascript">
+	require([
+		'jquery'
+	], function($){
+		$(document).ready(function(){
+			$(".products-grid").each(function( index ) {
+				if($(this).find('.action.tocart').width() < 120){
+					$(this).find('.action.tocart').addClass('small-button');
+				}else {
+					$(this).find('.action.tocart').removeClass('small-button');
+				}
+			});
+		});
+		$(window).resize(function(){
+			$(".products-grid").each(function( index ) {
+				if($(this).find('.action.tocart').width() < 120){
+					$(this).find('.action.tocart').addClass('small-button');
+				}else {
+					$(this).find('.action.tocart').removeClass('small-button');
+				}
+			});
+		});
+	});
+</script>
+
+
+<script type="text/javascript">
+    require([
+    'jquery'
+    ], function(jQuery){
+        (function($) {
+            $(document).ready(function(){
+            if($('.column.main').find(".box-fixed").eq(0).length){
+                var node = $('.column.main').find(".box-fixed").eq(0);
+                var box = node.find(".fixed-box");
+                if($('.column.main').find(".box-fixed").eq(1).length){
+                    var node1 = $('.column.main').find(".box-fixed").eq(1);
+                    var box1 = node1.find(".fixed-box");
+                }
+                if($(window).width() > 991){
+                    $(window).scroll(function(){
+                        var isTop = node.offset().top;
+                        var isTop1 = node1.offset().top;
+                        if($(this).scrollTop() > isTop){
+                            box.addClass('sticky');
+                            var isBottom = node.offset().top + node.height() - $(".fixed-box.sticky").height();
+                            if($(this).scrollTop() > isBottom){
+                                box.addClass('bottom');
+                            }else{
+                                box.removeClass('bottom');
+                            }
+                        }else{
+                             box.removeClass('sticky');
+                        }
+                        if($('.column.main').find(".box-fixed").eq(1).length){
+                            if($(this).scrollTop() > isTop1){
+                                box1.addClass('sticky');
+                                var isBottom1 = node1.offset().top + node1.height() - $(".fixed-box.sticky").height();
+                                if($(this).scrollTop() > isBottom1){
+                                    box1.addClass('bottom');
+                                }else{
+                                    box1.removeClass('bottom');
+                                }
+                            }else{
+                                 box1.removeClass('sticky');
+                            }
+                        }
+                    });
+                }else{
+                     $(".fixed-box").removeClass('sticky');
+                     $(".fixed-box").removeClass('bottom');
+                }
+                $(window).resize(function() {
+                    if($(this).width() > 991){
+                        $(window).scroll(function(){
+                            var isTop = node.offset().top;
+                            var isTop1 = node1.offset().top;
+                            if($(this).scrollTop() > isTop){
+                            box.addClass('sticky');
+                            var isBottom = node.offset().top + node.height() - $(".fixed-box.sticky").height();
+                            if($(this).scrollTop() > isBottom){
+                                box.addClass('bottom');
+                            }else{
+                                box.removeClass('bottom');
+                            }
+                            }else{
+                                 box.removeClass('sticky');
+                            }
+                            if($('.column.main').find(".box-fixed").eq(1).length){
+                                if($(this).scrollTop() > isTop1){
+                                    box1.addClass('sticky');
+                                    var isBottom1 = node1.offset().top + node1.height() - $(".fixed-box.sticky").height();
+                                    if($(this).scrollTop() > isBottom1){
+                                        box1.addClass('bottom');
+                                    }else{
+                                        box1.removeClass('bottom');
+                                    }
+                                }else{
+                                     box1.removeClass('sticky');
+                                }
+                            }
+                        });
+                    }else{
+                        $(".fixed-box").removeClass('sticky');
+                        $(".fixed-box").removeClass('bottom');
+                    }
+                });
+            }
+            });
+        })(jQuery);
+    });
+</script>

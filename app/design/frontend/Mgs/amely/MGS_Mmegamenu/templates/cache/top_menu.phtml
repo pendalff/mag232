@@ -1,0 +1,63 @@
+<?php 
+	$megaMenu = $this->getMegamenuItems();
+	$menuHelper = $this->helper('MGS\Mmegamenu\Helper\Data');
+	$enableHomeLink = $menuHelper->getStoreConfig('megamenu/general/home');
+	$homeLinkText = $menuHelper->getStoreConfig('megamenu/general/hometext') ? $menuHelper->getStoreConfig('megamenu/general/hometext') : __('Home');
+	$enableLogo = $menuHelper->getStoreConfig('megamenu/general/logo_center');
+	$logoPosition = $menuHelper->getStoreConfig('megamenu/general/logo_position') ? $menuHelper->getStoreConfig('megamenu/general/logo_position') : 0;
+	$flagIncludeLogo = $enableLogo ? false : true;
+?>
+
+<?php if(count($megaMenu) || $enableHomeLink || $enableLogo): ?>
+	<nav class="navigation<?php if($enableLogo): ?> navigation-with-logo<?php endif ?>" role="navigation">
+        <ul id="mainMenu" class="nav nav-main nav-main-menu">
+			<?php if($enableLogo): ?>
+				<?php $flag = false; ?>
+				<li class="mega-menu--left">
+					<ul class="has-logo-child-menu">
+						<?php $i=0; foreach($megaMenu as $item): $i++ ?>
+							<?php if($item->getPosition() < $logoPosition): ?>
+								<li class="<?php echo $this->getClass($item) ?>">
+									<?php echo $this->getMenuHtml($item) ?>
+								</li>
+							<?php else: ?>
+								<?php $flag = true; ?>
+							<?php endif ?>
+						<?php endforeach ?>
+					</ul>
+				</li>
+				<li class="mega-menu--logo">
+					<?php echo $this->getLayout()->createBlock('Magento\Theme\Block\Html\Header\Logo')->setTemplate('Magento_Theme::html/header/logo.phtml')->toHtml();  ?>
+				</li>
+				<?php if($flag): ?>
+				<li class="mega-menu--right">
+					<ul class="has-logo-child-menu">
+						<?php $i=0; foreach($megaMenu as $item): $i++ ?>
+							<?php if($item->getPosition() >= $logoPosition): ?>
+								<li class="<?php echo $this->getClass($item) ?>">
+									<?php echo $this->getMenuHtml($item) ?>
+								</li>
+							<?php endif ?>
+						<?php endforeach ?>
+					</ul>
+				</li>
+				<?php endif ?>
+			<?php else: ?>
+				<?php if($enableHomeLink): ?>
+					<li class="mega-menu-item level0">
+						<a href="<?php echo $this->getUrl() ?>" class="level0">
+							<?php echo $homeLinkText ?>
+						</a>
+					</li>
+				<?php endif ?>
+				<?php if(count($megaMenu)>0): ?>
+					<?php $i=0; foreach($megaMenu as $item): $i++ ?>
+						<li class="<?php echo $this->getClass($item) ?>">
+							<?php echo $this->getMenuHtml($item) ?>
+						</li>
+					<?php endforeach ?>
+				<?php endif ?>
+			<?php endif ?>
+        </ul>
+	</nav>
+<?php endif ?>

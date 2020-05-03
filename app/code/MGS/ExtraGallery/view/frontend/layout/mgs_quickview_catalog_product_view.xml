@@ -1,0 +1,21 @@
+<?xml version="1.0"?>
+<page xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" layout="1column" xsi:noNamespaceSchemaLocation="urn:magento:framework:View/Layout/etc/page_configuration.xsd">  
+  
+    <referenceBlock name="product.info.extra.media.image">
+		<arguments>
+			<argument name="view_type" xsi:type="string">quickview</argument>
+		</arguments>
+	</referenceBlock>
+	<referenceBlock name="product.info.extra.media.image.config">
+		<arguments>
+			<argument name="view_type" xsi:type="string">quickview</argument>
+		</arguments>
+	</referenceBlock>
+	<referenceBlock name="product.info.extra.media.image.type">
+		<arguments>
+			<argument name="view_type" xsi:type="string">quickview</argument>
+		</arguments>
+	</referenceBlock>
+	
+	<move element="product.info.extra.media.image.type" destination="product.info.media" />
+</page>

@@ -1,0 +1,42 @@
+<?php
+/**
+ * Copyright © 2016 Magento. All rights reserved.
+ * See COPYING.txt for license details.
+ */
+
+// @codingStandardsIgnoreFile
+
+/** @var $block \Magento\Catalog\Block\Product\View*/
+?>
+<?php
+$_product = $block->getProduct();
+$compareHelper = $this->helper('Magento\Catalog\Helper\Product\Compare');
+$themeHelper = $this->helper('MGS\Mpanel\Helper\Data');
+?>
+<?php if($themeHelper->getStoreConfig('sendfriend/email/enabled') || $themeHelper->getStoreConfig('mpanel/product_details/compare')): ?>
+	<div class="product-addto-links" data-role="add-to-links">
+		<?php if($themeHelper->getStoreConfig('mpanel/product_details/compare')): ?>
+			<a href="#" data-post='<?php /* @escapeNotVerified */ echo $compareHelper->getPostDataParams($_product);?>'
+				data-role="add-to-links"
+				class="action tocompare"><span><?php /* @escapeNotVerified */ echo __('Add to Compare') ?></span></a>
+		<?php endif ?>
+		<?php if($themeHelper->getStoreConfig('sendfriend/email/enabled')): ?>
+			<?php echo $block->getChildHtml();?>
+		<?php endif ?>
+	</div>
+<?php endif ?>
+<?php if($themeHelper->getStoreConfig('mpanel/product_details/wishlist') && $this->helper('Magento\Wishlist\Helper\Data')->isAllow()): ?>
+	<div class="product-addto-wishlist">
+		<a href="#"
+			class="action towishlist"
+			data-post='<?php /* @escapeNotVerified */ echo $this->helper('Magento\Wishlist\Helper\Data')->getAddParams($_product); ?>'
+			data-action="add-to-wishlist"><span><?php /* @escapeNotVerified */ echo __('Add to Wish List') ?></span></a>
+	</div>
+	<script type="text/x-magento-init">
+		{
+			"body": {
+				"addToWishlist": <?php /* @escapeNotVerified */ echo $this->helper('Magento\Framework\Json\Helper\Data')->jsonEncode($block->getWishlistOptions())?>
+			}
+		}
+	</script>
+<?php endif ?>

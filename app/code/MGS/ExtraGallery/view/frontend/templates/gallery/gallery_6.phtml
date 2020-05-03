@@ -1,0 +1,99 @@
+<?php $galleryImages = $this->getGalleryImages(); ?>
+<?php $zoom_image = $this->getEnableZoom(); ?>
+<?php $lbox_image = $this->getLbox(); ?>
+
+<?php
+	$themeHelper = $this->setThemeHelper();
+	$itemXl = $themeHelper->getStoreConfig('extragallery/general/per_row_xl') ? $themeHelper->getStoreConfig('extragallery/general/per_row_xl') : 5;
+	
+	$itemLg = $themeHelper->getStoreConfig('extragallery/general/per_row_lg') ? $themeHelper->getStoreConfig('extragallery/general/per_row_lg') : 4;
+	
+	$itemMd = $themeHelper->getStoreConfig('extragallery/general/per_row_md') ? $themeHelper->getStoreConfig('extragallery/general/per_row_md') : 3;
+	
+	$itemSm = $themeHelper->getStoreConfig('extragallery/general/per_row_sm') ? $themeHelper->getStoreConfig('extragallery/general/per_row_sm') : 2;
+	
+	$itemXs = $themeHelper->getStoreConfig('extragallery/general/per_row_xs') ? $themeHelper->getStoreConfig('extragallery/general/per_row_xs') : 1;
+?>
+<input type="hidden" id="item-xl" value="<?php echo $itemXl ?>"/>
+<input type="hidden" id="item-lg" value="<?php echo $itemLg ?>"/>
+<input type="hidden" id="item-md" value="<?php echo $itemMd ?>"/>
+<input type="hidden" id="item-sm" value="<?php echo $itemSm ?>"/>
+<input type="hidden" id="item-xs" value="<?php echo $itemXs ?>"/>
+
+<div class="product media">
+	<?php if($this->getRotateImage() && (count($this->getRotateImages())>0)): ?>
+		<a class="rotate-image" href="#" onclick="rotate360(); return false"></a>
+	<?php endif ?>
+	<div id="owl-carousel-gallery" class="owl-carousel gallery-6">
+		<?php foreach($galleryImages as $image): ?>
+		
+			<?php $lbImage = $image->getLabel() ? $image->getLabel() : $image->getLabelDefault(); ?>
+			<?php $isVideo = $image->getMediaType() == 'external-video' ? true : false; ?>
+			<?php $href = $isVideo ? $image->getVideoUrl() : $image->getImageZoom(); ?>
+			
+			<div class="product item-image imgzoom<?php if($isVideo): ?> item-image-video<?php endif ?>" data-zoom="<?php echo $image->getImageZoom(); ?>">
+			
+				<?php if($isVideo): ?><div class="label-video"><?php echo __('Video') ?></div><?php endif ?>
+				
+				<?php if($lbox_image): ?>
+					<a class="lb<?php if($isVideo): ?> video-link<?php endif ?>" href="<?php echo $href; ?>">
+						<img class="img-fluid" src="<?php echo $image->getLargeImageUrl(); ?>" alt="<?php echo $lbImage ?>"/>
+					</a>
+				<?php else: ?>
+					<img class="img-fluid" src="<?php echo $image->getLargeImageUrl(); ?>" alt="<?php echo $lbImage ?>"/>
+					<?php if($isVideo): ?>
+						<a target="_blank" class="popup-video" href="<?php echo $image->getVideoUrl(); ?>">
+							<span class="ti-video-camera"></span>
+						</a>
+					<?php endif ?>
+				<?php endif ?>
+			</div>
+		<?php endforeach ?>
+	</div>
+</div>
+
+<script type="text/javascript">
+    require([ 
+		'jquery', 
+		'mgs/owlcarousel',
+		'zoom-images',
+		'magnificPopup'
+	], function ($) {
+		
+		<?php if($zoom_image): ?>
+		$('#owl-carousel-gallery').on('initialized.owl.carousel', function(event) {
+            $(".imgzoom").each(function( index ) {
+                zoomElement(this);
+            });
+        });
+		<?php endif ?>
+		
+        $('#owl-carousel-gallery').owlCarousel({
+            items: <?php echo $itemXl ?>,
+            autoplay: false,
+            lazyLoad: false,
+			loop: true,
+            nav: true,
+            dots: false,
+            rtl: RTL,
+            navText: ["<span></span>","<span></span>"],
+			responsive : {
+				0 : {
+					items : <?php echo $itemXs ?>
+				},
+				576 : {
+					items : <?php echo $itemSm ?>
+				},
+				768 : {
+					items : <?php echo $itemMd ?>
+				},
+				992 : {
+					items : <?php echo $itemLg ?>
+				},
+				1200 : {
+					items : <?php echo $itemXl ?>
+				}
+			}
+        });
+    });
+</script>

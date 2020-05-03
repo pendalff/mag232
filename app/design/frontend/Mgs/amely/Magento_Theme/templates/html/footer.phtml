@@ -1,0 +1,99 @@
+<?php $themeHelper = $this->helper('MGS\Mpanel\Helper\Data') ?>
+<?php $canUsePanel = $themeHelper->acceptToUsePanel() ?>
+
+<?php // Get footer version ?>
+<?php $footer = $themeHelper->getStoreConfig('mgstheme/footer/footer'); ?>
+<?php if($footer == 'footer' || $footer == ""): ?><?php $footer = 'footer_1'; ?><?php endif ?>
+
+<?php // Footer content ?>
+<div class="footer-container">
+    <?php // Footer 1 ?>
+    <?php if($footer == 'footer_1'): ?>
+        <div class="middle-footer">
+            <div class="container">
+                <div class="row align-items__center">
+                    <div class="col-lg-6 col-md-6 col-sm-12 col-xs-12 left-content">
+                        <?php echo $this->getLayout()->createBlock('Magento\Cms\Block\Block')->setBlockId('amely_footer_1_newsletter')->setCanUsePanel($canUsePanel)->toHtml() ?>
+                    </div>
+                    <div class="col-lg-6 col-md-6 col-sm-12 col-xs-12 right-content">
+                        <?php echo $this->getLayout()->createBlock('Magento\Cms\Block\Block')->setBlockId('amely_footer_1_social')->setCanUsePanel($canUsePanel)->toHtml() ?>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="bottom-footer">
+            <div class="container">
+                <div class="row align-items__center">
+                    <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12 left-content">
+                        <?php echo $this->getLayout()->createBlock('Magento\Cms\Block\Block')->setBlockId('amely_footer_1_payment_icon')->setCanUsePanel($canUsePanel)->toHtml() ?>
+                    </div>
+                    <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12 right-content">
+                        <address><?php echo $themeHelper->getStoreConfig('mgstheme/footer/footer_copyright') ?></address>
+                    </div>
+                </div>
+            </div>
+        </div>
+    <?php elseif($footer == 'footer_2'): ?>
+        <div class="middle-footer">
+            <div class="container">
+                <div class="row">
+                    <div class="col-lg-4 col-md-4 col-sm-12 col-xs-12">
+                        <?php echo $this->getLayout()->createBlock('Magento\Cms\Block\Block')->setBlockId('amely_footer_2_coppy')->setCanUsePanel($canUsePanel)->toHtml() ?>
+                        <address><?php echo $themeHelper->getStoreConfig('mgstheme/footer/footer_copyright') ?></address>
+                    </div>
+                    <div class="col-lg-2 col-md-2 col-sm-12 col-xs-12">
+                        <?php echo $this->getLayout()->createBlock('Magento\Cms\Block\Block')->setBlockId('amely_footer_2_list_left')->setCanUsePanel($canUsePanel)->toHtml() ?>
+                    </div>
+                    <div class="col-lg-2 col-md-2 col-sm-12 col-xs-12">
+                        <?php echo $this->getLayout()->createBlock('Magento\Cms\Block\Block')->setBlockId('amely_footer_2_list_right')->setCanUsePanel($canUsePanel)->toHtml() ?>
+                    </div>
+                    <div class="col-lg-4 col-md-4 col-sm-12 col-xs-12 text-right">
+                        <?php echo $this->getLayout()->createBlock('Magento\Cms\Block\Block')->setBlockId('amely_footer_2_follow')->setCanUsePanel($canUsePanel)->toHtml() ?>
+                    </div>
+                </div>
+            </div>
+        </div>
+    <?php elseif($footer == 'footer_3'): ?>
+        <div class="middle-footer">
+            <div class="container-fluid">
+                <div class="row">
+                    <div class="col-xl-3 col-lg-4 col-md-4 col-12">
+                        <?php echo $this->getLayout()->createBlock('Magento\Cms\Block\Block')->setBlockId('amely_footer_2_coppy')->setCanUsePanel($canUsePanel)->toHtml() ?>
+                        <address><?php echo $themeHelper->getStoreConfig('mgstheme/footer/footer_copyright') ?></address>
+                    </div>
+                    <div class="col-xl-2 col-lg-4 col-md-4 col-12">
+                        <?php echo $this->getLayout()->createBlock('Magento\Cms\Block\Block')->setBlockId('amely_footer_2_list_left')->setCanUsePanel($canUsePanel)->toHtml() ?>
+                    </div>
+                    <div class="col-xl-2 col-lg-4 col-md-4 col-12">
+                        <?php echo $this->getLayout()->createBlock('Magento\Cms\Block\Block')->setBlockId('amely_footer_2_list_right')->setCanUsePanel($canUsePanel)->toHtml() ?>
+                    </div>
+                    <div class="col-xl-3 col-lg-6 col-md-6 col-12">
+                        <?php echo $this->getLayout()->createBlock('Magento\Cms\Block\Block')->setBlockId('footer_instargram')->setCanUsePanel($canUsePanel)->toHtml() ?>
+                    </div>
+                    <div class="col-xl-2 col-lg-6 col-md-6 col-12 text-right">
+                        <?php echo $this->getLayout()->createBlock('Magento\Cms\Block\Block')->setBlockId('amely_footer_2_follow')->setCanUsePanel($canUsePanel)->toHtml() ?>
+                    </div>
+                </div>
+            </div>
+        </div>
+    <?php elseif($footer == 'footer_4'): ?>
+        <div class="middle-footer">
+            <div class="container">
+                <address><?php echo $themeHelper->getStoreConfig('mgstheme/footer/footer_copyright') ?></address>
+                <?php echo $this->getLayout()->createBlock('Magento\Cms\Block\Block')->setBlockId('footer_payment')->setCanUsePanel($canUsePanel)->toHtml() ?>
+            </div>
+        </div>
+	<?php elseif($footer == 'footer_5'): ?>
+        <div class="middle-footer">
+			<div class="top-footer">
+				<?php echo $this->getLayout()->createBlock('Magento\Cms\Block\Block')->setBlockId('amely_contact_link_footer_5')->setCanUsePanel($canUsePanel)->toHtml() ?>
+			</div>
+			<div class="content-social">
+				<?php echo $this->getLayout()->createBlock('Magento\Cms\Block\Block')->setBlockId('amely_social_link_footer_5')->setCanUsePanel($canUsePanel)->toHtml() ?>
+			</div>
+			<div class="copyright-footer">
+				<address><?php echo $themeHelper->getStoreConfig('mgstheme/footer/footer_copyright') ?></address>
+			</div>
+		</div>
+    <?php endif ?>
+</div>

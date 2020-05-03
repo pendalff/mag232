@@ -1,0 +1,42 @@
+<?php
+/**
+ * Copyright © 2016 Magento. All rights reserved.
+ * See COPYING.txt for license details.
+ */
+
+// @codingStandardsIgnoreFile
+
+?>
+
+<?php
+/** @var $block \Magento\ConfigurableProduct\Block\Product\View\Type\Configurable*/
+$_product    = $block->getProduct();
+$crOptions    = $this->getCurrentOptions();
+$itemId    = $this->getItemId();
+$_attributes = $block->decorateArray($block->getAllowAttributes());
+?>
+<?php if ($_product->isSaleable() && count($_attributes)):?>
+    <?php $i=0; foreach ($_attributes as $_attribute): $i++; ?>
+		<?php $idEl = $itemId . $i; ?>
+		<?php if($crOptions == '' || !in_array($_attribute->getAttributeId(), $crOptions)): ?>
+        <div class="field configurable required margin-bottom10">
+            <label class="label" for="attribute<?php /* @escapeNotVerified */ echo $idEl ?>">
+                <span><?php echo $block->escapeHtml($_attribute->getProductAttribute()->getStoreLabel()) ?></span>
+            </label>
+            <div class="control">
+                <select name="super_attribute_<?php echo $itemId ?>[<?php /* @escapeNotVerified */ echo $_attribute->getAttributeId() ?>]"
+                        data-validate="{required:true}"
+                        id="attribute<?php /* @escapeNotVerified */ echo $idEl ?>"
+                        class="form-control">
+                    <option value=""><?php /* @escapeNotVerified */ echo __('Choose an Option...') ?></option>
+					<?php if($_attribute->getData('options')): ?>
+						<?php foreach ($_attribute->getData('options') as $_option): ?>
+						<option value="<?php echo $_option['value_index']; ?>"><?= $_option['store_label'] ? $_option['store_label'] : $_option['default_label']; ?></option>
+						<?php endforeach ?>
+					<?php endif ?>
+                </select>
+            </div>
+        </div>
+		<?php endif ?>
+    <?php endforeach; ?>
+<?php endif;?>

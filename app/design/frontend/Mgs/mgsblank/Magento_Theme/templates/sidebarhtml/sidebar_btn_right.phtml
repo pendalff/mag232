@@ -1,0 +1,22 @@
+ <?php
+/**
+ * Copyright © 2016 Magento. All rights reserved.
+ * See COPYING.txt for license details.
+ */
+?>
+
+<div class="sidebar-action-mobile--right">
+	<button class="btn btn-navbar navbar_sidebar navbar_sidebar--right" id="navbar_sidebar_right">
+		<i class="icon pe-7s-edit" ></i>
+	</button>
+</div>
+
+<script type="text/javascript">
+	require([
+		'jquery'
+	], function($){
+		$("#navbar_sidebar_right").click(function () { 
+			$('body').addClass('active-sidebar-right');
+		});
+	});
+</script>

@@ -1,0 +1,76 @@
+<?php $galleryImages = $this->getGalleryImages(); ?>
+<?php $zoom_image = $this->getEnableZoom(); ?>
+<?php $lbox_image = $this->getLbox(); ?>
+<div class="gallery-list">
+    <?php foreach($galleryImages as $image): ?>
+        <?php $lbImage = $image->getLabel() ? $image->getLabel() : $image->getLabelDefault(); ?>
+		<?php $isVideo = $image->getMediaType() == 'external-video' ? true : false; ?>
+		<?php $href = $isVideo ? $image->getVideoUrl() : $image->getImageZoom(); ?>
+			
+        <div class="product item-image imgzoom<?php if($isVideo): ?> item-image-video<?php endif ?>" data-zoom="<?php echo $image->getImageZoom(); ?>">
+			
+			<?php if($isVideo): ?><div class="label-video"><?php echo __('Video') ?></div><?php endif ?>
+			
+			<?php if($lbox_image): ?>
+				<a class="lb<?php if($isVideo): ?> video-link<?php endif ?>" href="<?php echo $href; ?>">
+					<img class="img-fluid" src="<?php echo $image->getLargeImageUrl(); ?>" alt="<?php echo $lbImage ?>"/>
+				</a>
+			<?php else: ?>
+				<img class="img-fluid" src="<?php echo $image->getLargeImageUrl(); ?>" alt="<?php echo $lbImage ?>"/>
+				<?php if($isVideo): ?>
+					<a target="_blank" class="popup-video" href="<?php echo $image->getVideoUrl(); ?>">
+						<span class="ti-video-camera"></span>
+					</a>
+				<?php endif ?>
+			<?php endif ?>
+		</div>
+    <?php endforeach ?>
+</div>
+<script type="text/javascript">
+    <?php if($zoom_image): ?>
+        require([ 'jquery', 'zoom-images' ],function($) { 
+            $(".imgzoom").each(function( index ) {
+                zoomElement(this);
+            });
+        });
+    <?php endif ?>
+	require([ 'jquery' ],function($) {
+		var $padding = 0;
+		var $offset = $('.row-detail-product').offset().top;
+		var $heightEl = $('.row-detail-product .product-info-main').innerHeight();
+		
+		$(window).scroll(function(){
+			var $scroll = $(this).scrollTop();
+			if($(window).width() > 991.98){
+				var $mediaHeight = $('.product.media').innerHeight();
+				var $thisHeight = $('.row-detail-product .product-info-main').innerHeight();
+				
+				if($scroll < ($mediaHeight + $offset + 100)){
+					
+					$padding = $scroll - $offset + 100;
+					if($padding < 0){
+						$padding = 0;
+					}
+					
+					if($mediaHeight > $thisHeight && ($padding + $heightEl - 100) <= $mediaHeight){
+						$('.row-detail-product .product-info-main').css('padding-top', $padding);
+						$('.row-detail-product .product-info-main').attr('data-padding', $padding);
+					}else {
+						if($padding < $('.row-detail-product .product-info-main').attr('data-padding')){
+							$('.row-detail-product .product-info-main').css('padding-top', $padding);
+							$('.row-detail-product .product-info-main').attr('data-padding', $padding);
+						}
+					}
+				}
+			}else {
+				$('.row-detail-product .product-info-main').css('padding-top', 0);
+			}
+		});
+		
+		$(window).resize(function(){
+			if($(window).width() < 992){
+				$('.row-detail-product .product-info-main').css('padding-top', 0);
+			}
+		});
+	});
+</script>

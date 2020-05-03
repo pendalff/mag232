@@ -1,0 +1,70 @@
+<?php
+$helper = $this->helper('MGS\Blog\Helper\Data');
+$collection = $block->getCollection();
+$showThumbnail = $this->getConfig('general_settings/show_thumbnail');
+?>
+<?php $themeHelper = $this->helper('MGS\Mpanel\Helper\Data'); ?>
+<?php $lazyLoad = $themeHelper->getStoreConfig('mgstheme/general/lazy_load'); ?>
+<?php $baseImage = $this->getViewFileUrl('MGS_Mpanel::images/blank5.png'); ?>
+<?php if (!count($collection)): ?>
+    <div class="message empty">
+        <div><?php echo __('Have no posts.') ?></div>
+    </div>
+<?php else: ?>
+    <div class="blog-list">
+        <?php foreach ($collection as $post): ?>
+            <div class=" blog-post ">
+			
+				<div class="post-images">
+                    <?php if($helper->getImageThumbnailPost($post) != ""): ?>
+					<?php 
+						if(!$lazyLoad){
+							$baseImage = $this->getImageThumbnailPost($post);
+						}
+					?>
+                        <div class="post-thumbnail <?php if($lazyLoad): ?> lazy-img<?php endif ?>">							
+							<a class="post-thumbnail--image " style="background-image:url('<?php echo $helper->getImageThumbnailPost($post); ?>');" href="<?php echo $post->getPostUrlWithNoCategory(); ?>" title="<?php echo $post->getTitle(); ?>">
+								<img class="img-fluid lazy" src="<?php echo $baseImage; ?>" data-src="<?php echo $helper->getImageThumbnailPost($post); ?>" alt="<?php echo $post->getTitle(); ?>" />
+							</a>
+                            <?php if($post->getThumbType() == "video" && $post->getVideoThumbId() != ""): ?>
+								<a class="btn btn-primary popup-video" href="<?php echo $helper->getVideoThumbUrl($post); ?>"><?php echo __('Watch Video'); ?></a>
+                            <?php endif ?>
+                        </div>
+                    <?php endif ?>
+				</div>
+				<div class="post-body">
+					<h4 class="post-header">
+						 <a class="post-title-link" title="<?php echo $post->getTitle(); ?>" href="<?php echo $post->getPostUrlWithNoCategory(); ?>"><?php echo $post->getTitle(); ?></a>
+					</h4>
+					<div class="post-metas">
+						<div class="meta-date">
+							<i class="ion-ios-calendar-outline"></i>
+							<?php echo __('%1', $block->formatDate($post->getCreatedAt(), \IntlDateFormatter::MEDIUM, false)); ?>
+						</div>
+						<div class="meta-comment">
+							<i class="ion-chatbubble-working"></i>
+							<span>
+								<?php echo $post->getCommentCount(); ?>
+								<span><?php echo $post->getCommentCount() > 1 ? __('Comments') : __('Comment') ?></span>
+							</span>
+						</div>
+					</div>
+					<?php if ($post->getShortContent()): ?>
+					<div class="post-content">
+						<div class="post-short-description">
+							<?php echo $post->getShortContent(); ?>
+						</div>
+					</div>
+					<?php endif; ?>
+					<div class="post-aux">
+						<a class="btn-readmore" href="<?php echo $post->getPostUrlWithNoCategory(); ?>"  ><?php echo __('Read more') ?></a>
+					</div>
+				</div>
+				
+			</div>
+        <?php endforeach; ?>
+    </div>
+	<div class="bottom-pagination">
+		<div class="toolbar"><?php echo $block->getPagerHtml(); ?></div>
+	</div>
+<?php endif; ?>

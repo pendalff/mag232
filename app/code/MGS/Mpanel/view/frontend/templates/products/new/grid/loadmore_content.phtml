@@ -1,0 +1,78 @@
+<?php 
+/* Get Helper */
+$_helper = $this->helper('Magento\Catalog\Helper\Output');
+$themeHelper = $this->helper('MGS\Mpanel\Helper\Data');
+$settings = $themeHelper->getThemeSettings();
+$_imagehelper = $this->helper('Magento\Catalog\Helper\Image');
+$quickViewHelper = $this->helper('MGS\QuickView\Helper\Data');
+?>
+<?php /* Get Backend config */
+$change_img = $settings['catalog']['hover_change'] ? true : false;;
+$lazyLoad = $themeHelper->getStoreConfig('mgstheme/general/lazy_load');
+?>
+<?php /* Ratio config */
+$ratio = $this->getRatio();
+$size = $themeHelper->getImageSize($ratio);
+$padding = $themeHelper->getImagePadding($ratio);
+$baseImage = $this->getViewFileUrl('MGS_Mpanel::images/blank'.$ratio.'.png');
+?>
+<?php /* Button Config */
+$showCompare = $settings['catalog']['compare_button'] ? false : true;
+$showWishList = $settings['catalog']['wishlist_button'] && $this->helper('Magento\Wishlist\Helper\Data')->isAllow() ? false : true;
+?>
+<?php 
+    $fk = $block->getBlockHtml('formkey');
+	if($this->getTabs()){
+		$_productCollection = $this->getProductCollection($this->getAdditionalData());
+	}else{
+		$_productCollection = $this->getNewProductByCategories($this->getAdditionalData());
+	}
+    
+	$col = $this->getCol();
+	
+	$limit = $this->getLimit();
+	$curPage = $this->getCurPage();
+	if($this->getPrevPage()){
+		$curPage = $curPage + 1;
+	}
+	if($this->getNextPage()){
+		$curPage = $curPage - 1;
+	}
+?>
+
+<?php foreach ($_productCollection as $_product): ?>
+
+    <?php $review = $block->getReviewsSummaryHtml($_product, \Magento\Catalog\Block\Product\ReviewRendererInterface::SHORT_VIEW); ?>
+    <?php $postParams = $block->getAddToCartPostParams($_product); ?>
+    <?php $prdPrice = $block->getProductPrice($_product) ?>
+    <?php $swatches = $this->getLayout()->createBlock('Magento\Swatches\Block\Product\Renderer\Listing\Configurable')->setProduct($_product)->setTemplate('Magento_Swatches::product/listing/renderer.phtml')->toHtml() ?>
+    <?php $wlDataPost = $block->getAddToWishlistParams($_product); ?>
+    <?php $pos = $block->getPositioned(); ?>
+    
+    <div class="product product-item col">
+        <?php echo $this->getLayout()
+                        ->createBlock('Magento\Framework\View\Element\Template')
+                        ->setProduct($_product)
+                        ->setThemeHelper($themeHelper)
+                        ->setImageHelper($_imagehelper)
+                        ->setCatalogHelperOutput($_helper)
+                        ->setQuickViewHelper($quickViewHelper)
+                        ->setRatio($ratio)
+                        ->setSize($size)
+                        ->setPadding($padding)
+                        ->setLazyLoadBaseImage($baseImage)
+                        ->setCompare($showCompare)
+                        ->setFk($fk)
+                        ->setPostParams($postParams)
+                        ->setReview($review)
+                        ->setPrdPrice($prdPrice)
+                        ->setWishList($showWishList)
+                        ->setLazyLoad($lazyLoad)
+                        ->setHoverChange($change_img)
+                        ->setWishListPost($wlDataPost)
+                        ->setTemplate('MGS_Mpanel::products/product_item/grid/default.phtml')
+                        ->setSwatches($swatches)
+                        ->setPos($pos)
+                        ->toHtml(); ?>
+	</div>
+<?php endforeach; ?>

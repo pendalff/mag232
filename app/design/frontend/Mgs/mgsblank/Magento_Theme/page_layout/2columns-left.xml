@@ -1,0 +1,19 @@
+<?xml version="1.0"?>
+<!--
+/**
+ * Copyright © 2015 Magento. All rights reserved.
+ * See COPYING.txt for license details.
+ */
+-->
+<layout xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:framework:View/Layout/etc/page_layout.xsd">
+
+	<referenceContainer name="div.sidebar.main" htmlClass="sidebar sidebar-main col">
+		<block class="Magento\Framework\View\Element\Template" name="sidebar.responsive.title" template="Magento_Theme::sidebarhtml/sidebar_title.phtml" before="-" />
+	</referenceContainer>
+	
+	<referenceContainer name="after.body.start">
+		<block class="Magento\Framework\View\Element\Template" name="sidebar.responsive.btn" template="Magento_Theme::sidebarhtml/sidebar_btn.phtml"/>
+	</referenceContainer>
+	
+	<move element="div.sidebar.additional" destination="div.sidebar.main"/>
+</layout>

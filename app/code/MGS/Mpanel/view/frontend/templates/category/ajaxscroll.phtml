@@ -1,0 +1,40 @@
+<?php $helper = $this->helper('MGS\Mpanel\Helper\Data') ?>
+<?php if($helper->getStoreConfig('mpanel/catalog/ajaxscroll')): ?>
+	<script type="text/javascript">
+		require([
+			"jquery",
+			"jquery/ui",
+			"ajaxscroll"
+		], function($){
+			$(document).ready(function(){
+				var ajaxcroll = $.scroll({
+					wrapperSelector : '#product-wrapper',
+					itemSelector: '.product-item',
+					paginationSelector: '.pagination .item',
+					nextSelector: '.pagination .next'
+				});
+				
+				ajaxcroll.extension(new scrollLoading({html: '<div class="text-center col-xs-12"><span class="btn-loadmore"><span class="dot loading">.</span><span class="dot loading">.</span><span class="dot loading">.</span><span class="text loading">Load More</span><span class="text load-text loading">Loading</span><span class="dot loading">.</span><span class="dot loading">.</span><span class="dot loading">.</span></span></div>'}));
+                
+                ajaxcroll.on('loaded', function(data, items) {
+					setTimeout(initLazyload, 100);
+				});
+			});
+		});
+        
+        function initLazyload(){
+			require(['jquery','mgs/lazyload'],function($){
+                $("img.lazy").unveil(200, function(){
+                    var self = $(this);
+					self.load(function() {
+						this.style.opacity = 1;
+						self.removeClass('lazy');
+						self.parent().closest('.lazy-img').addClass('loaded');
+					});
+                });
+            });
+		}
+	</script>
+<?php endif ?>
+
+

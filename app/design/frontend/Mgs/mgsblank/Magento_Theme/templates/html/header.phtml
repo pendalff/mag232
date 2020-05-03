@@ -1,0 +1,98 @@
+<?php 
+$themeHelper = $this->helper('MGS\Mpanel\Helper\Data');
+$canUsePanel = $themeHelper->acceptToUsePanel();
+?>
+
+<?php 
+// Get version header 
+$header = $themeHelper->getStoreConfig('mgstheme/header/header');
+if($header == 'header' || $header == '') { $header = 'header_1'; }
+?>
+
+<?php
+// Menu
+$mgsMegamenu = $themeHelper->checkModuleStatus('MGS_Mmegamenu') ? $block->getChildHtml('megamenu') : $block->getChildHtml('catalog.topnav');
+$classMenu =  $themeHelper->checkModuleStatus('MGS_Mmegamenu') ? 'mgs-menu' : 'mgt-menu';
+
+// Top Links
+$topLink = $block->getChildHtml('top.links');
+
+// Top Search
+$topSearch = $block->getChildHtml('top.search');
+
+// Store Setting
+$storeSetting = $block->getChildHtml('store.settings');
+
+//Store
+$storeLanguage = $block->getChildHtml('store_language');
+
+//Currency
+$currency = $block->getChildHtml('currency');
+
+//Mini Cart
+$miniCart = $block->getChildHtml('minicart'); 
+?>
+
+<?php
+// Custom Icon
+$iconCart = $themeHelper->getStoreConfig('mgstheme/header/icon_cart');
+$iconSearch = $themeHelper->getStoreConfig('mgstheme/header/icon_search');
+$iconMyAccount = $themeHelper->getStoreConfig('mgstheme/header/icon_myaccount');
+$iconSetting = $themeHelper->getStoreConfig('mgstheme/header/icon_setting');
+?>
+
+<img src="<?php echo $themeHelper->getMediaUrl().'header_icon/'.$iconCart; ?>" alt="" />
+<img src="<?php echo $themeHelper->getMediaUrl().'header_icon/'.$iconSearch; ?>" alt="" />
+<img src="<?php echo $themeHelper->getMediaUrl().'header_icon/'.$iconMyAccount; ?>" alt="" />
+<img src="<?php echo $themeHelper->getMediaUrl().'header_icon/'.$iconSetting; ?>" alt="" />
+
+<?php if($header == 'header_1'): ?>
+    <?php // Header 1 ?>
+    
+    <?php 
+    // Custom Static block
+    $header_custom_block = $this->getLayout()->createBlock('Magento\Cms\Block\Block')->setBlockId('mgs_blank_header_1_top_block')->setCanUsePanel($canUsePanel)->toHtml(); 
+    ?>
+    <div class="top-header-content">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-4 col-sm-6 col-xs-12">
+                    <?php echo $storeLanguage ?>
+                    <?php echo $currency ?>
+                </div>
+                <div class="col-lg-8 col-sm-6 col-xs-12">
+                    <?php echo $topLink ?>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="middle-header-content">
+        <div class="container">
+            <div class="middle-header-wrapper">
+                <?php echo $block->getChildHtml('logo') ?>
+                <button class="action nav-toggle hidden-lg-up"><span class="fa fa-bars" aria-hidden="true"></span></button>
+                <?php echo $miniCart ?>
+                <?php echo $topSearch ?>
+            </div>
+        </div>
+    </div>
+    <button class="action close-nav-button"><span class="fa fa-times" aria-hidden="true"></span></button>
+    <div class="megamenu-content<?php if($block->getChildHtml('megamenu')!=''): ?> mgs-menu<?php else: ?> mgt-menu<?php endif ?>">
+        <ul class="nav nav-tabs">
+            <li class="active"><a data-toggle="tab" href="#main-Menucontent"><?php echo __('Menu'); ?></a></li>
+            <li><a data-toggle="tab" href="#main-Accountcontent"><?php echo __('My Account'); ?></a></li>
+        </ul>
+        <div class="tab-content">
+            <div id="main-Menucontent" class="tab-pane fade in active">
+                <div class="container">
+                    <?php echo $mgsMegamenu ?>
+                </div>
+            </div>
+            <div id="main-Accountcontent" class="tab-pane fade">
+                <?php echo $block->getChildHtml('top.links') ?>
+            </div>
+        </div>
+    </div>
+<?php elseif($header == 'header_2'): ?>
+    <?php // Header 2 ?>
+<?php endif ?>

@@ -1,0 +1,341 @@
+<?php 
+$themeHelper = $this->helper('MGS\Mpanel\Helper\Data');
+$menuHelper = $this->helper('MGS\Mmegamenu\Helper\Data');
+$canUsePanel = $themeHelper->acceptToUsePanel();
+?>
+
+<?php 
+// Get version header 
+$header = $themeHelper->getStoreConfig('mgstheme/header/header');
+if($header == 'header' || $header == '') { $header = 'header_1'; }
+?>
+
+<?php
+// Menu
+$mgsMegamenu = $themeHelper->isActiveModule('MGS_Mmegamenu') ? $block->getChildHtml('megamenu') : $block->getChildHtml('catalog.topnav');
+$classMenu =  $themeHelper->isActiveModule('MGS_Mmegamenu') ? 'mgs-menu' : 'mgt-menu';
+
+// Top Links
+$topLink = $block->getChildHtml('top.links');
+
+// Top Search
+$topSearch = $block->getChildHtml('top.search');
+
+// Store Setting
+$storeSetting = $block->getChildHtml('store.settings');
+
+//Store
+$storeLanguage = $block->getChildHtml('store_language');
+
+//Currency
+$currency = $block->getChildHtml('currency');
+
+//Mini Cart
+$miniCart = $block->getChildHtml('minicart'); 
+?>
+<?php if($header == 'header_5'): ?>
+	<div class="mobile-navigation">
+		<a href="javascript:void(0)" class="close-nav-button"></a>
+	    <ul class="nav nav-tabs mobile-navigation--tabs">
+	        <li class="nav-item item-megameu"><a class="nav-link active" data-toggle="tab" href="#mobile_navigation_menu"><?php echo __('Menu'); ?></a></li>
+	        <li class="nav-item item-my-account"><a class="nav-link" data-toggle="tab" href="#mobile_navigation_account"><?php echo __('Account'); ?></a></li>
+	        <?php if($storeSetting): ?>
+	            <li class="nav-item item-setting"><a class="nav-link" data-toggle="tab" href="#mobile_navigation_setting"><?php echo __('Setting'); ?></a></li>
+	        <?php endif ?>
+	    </ul>
+	    <div class="tab-content">
+	        <div id="mobile_navigation_menu" class="tab-pane fade show active"></div>
+	        <div id="mobile_navigation_account" class="tab-pane fade">
+	        	<h5 class="tab-title"><?php echo __('My account');?></h5>
+	        	<?php echo $topLink ?>
+        	</div>
+	        <?php if($storeSetting): ?>
+	        	<div id="mobile_navigation_setting" class="tab-pane fade">
+	        		<h5 class="tab-title"><?php echo __('Setting');?></h5>
+	        		<?php echo $storeSetting ?>
+        		</div>
+	        <?php endif ?>
+	    </div>
+	    <?php echo $this->getLayout()->createBlock('Magento\Cms\Block\Block')->setBlockId('header_contact_us')->setCanUsePanel($canUsePanel)->toHtml() ?>
+		<?php echo $this->getLayout()->createBlock('Magento\Cms\Block\Block')->setBlockId('header_social_link')->setCanUsePanel($canUsePanel)->toHtml() ?>
+	</div>
+<?php elseif($header == 'header_6'):?>
+	<div class="mobile-navigation">
+		<a href="javascript:void(0)" class="close-nav-button"></a>
+	    <ul class="nav nav-tabs mobile-navigation--tabs">
+	        <li class="nav-item item-megameu"><a class="nav-link active" data-toggle="tab" href="#mobile_menu"><?php echo __('Menu'); ?></a></li>
+	        <li class="nav-item item-my-account"><a class="nav-link" data-toggle="tab" href="#mobile_navigation_account"><?php echo __('Account'); ?></a></li>
+	        <?php if($storeSetting): ?>
+	            <li class="nav-item item-setting"><a class="nav-link" data-toggle="tab" href="#mobile_navigation_setting"><?php echo __('Setting'); ?></a></li>
+	        <?php endif ?>
+	    </ul>
+	    <div class="tab-content">
+	        <div id="mobile_menu" class="tab-pane fade show active">
+	        	<?php echo $mgsMegamenu ?>
+	        </div>
+	        <div id="mobile_navigation_account" class="tab-pane fade">
+	        	<h5 class="tab-title"><?php echo __('My account');?></h5>
+	        	<?php echo $topLink ?>
+        	</div>
+	        <?php if($storeSetting): ?>
+	        	<div id="mobile_navigation_setting" class="tab-pane fade">
+	        		<h5 class="tab-title"><?php echo __('Setting');?></h5>
+	        		<?php echo $storeSetting ?>
+        		</div>
+	        <?php endif ?>
+	    </div>
+	</div>
+<?php else:?>
+	<div class="mobile-navigation">
+	    <ul class="nav nav-tabs mobile-navigation--tabs">
+	        <li class="nav-item item-megameu"><a class="nav-link active" data-toggle="tab" href="#mobile_navigation_menu"><?php echo __('Menu'); ?></a></li>
+	        <li class="nav-item item-my-account"><a class="nav-link" data-toggle="tab" href="#mobile_navigation_account"><?php echo __('Account'); ?></a></li>
+	        <?php if($storeSetting): ?>
+	            <li class="nav-item item-setting"><a class="nav-link" data-toggle="tab" href="#mobile_navigation_setting"><?php echo __('Setting'); ?></a></li>
+	        <?php endif ?>
+	    </ul>
+	    <div class="tab-content">
+	        <div id="mobile_navigation_menu" class="tab-pane fade show active"></div>
+	        <div id="mobile_navigation_account" class="tab-pane fade"><?php echo $topLink ?></div>
+	        <?php if($storeSetting): ?><div id="mobile_navigation_setting" class="tab-pane fade"><?php echo $storeSetting ?></div><?php endif ?>
+	    </div>
+	</div>
+<?php endif;?>
+<?php if($header == 'header_1'): ?>
+    <?php // Header 1 ?>
+	<?php $newsletterLink = $themeHelper->getStoreConfig('mgstheme/header/newsletter_link'); ?>
+    <div class="top-header-content">
+		<div class="top-header-left">
+			<?php echo $storeLanguage ?>
+			<?php echo $currency ?>
+			<div class="custom-text"><?php echo $this->getLayout()->createBlock('Magento\Cms\Block\Block')->setBlockId('amely_header_1_order_online')->setCanUsePanel($canUsePanel)->toHtml() ?></div>
+		</div>
+		<div class="top-header-right clear-after">
+			<div class="my-account-link">
+				<div class="actions toggle-toplinks">
+					<a class="toogle-action" href="javascript:void(0);"><?php echo __('My Account'); ?></a>
+				</div>
+				<div class="toplinks-content transition-all-300"><?php echo $topLink ?></div>
+			</div>
+			<?php if($this->getRequest()->getFullActionName() == 'cms_index_index') :?>
+                <?php if($newsletterLink): ?>
+                    <div class="newsletter-link"><a class="newsletter-action" href="javascript:void();"><?php echo __('Newsletter Signup'); ?></a></div>
+                <?php endif ?>
+			<?php endif ?>
+			<?php echo $this->getLayout()->createBlock('Magento\Cms\Block\Block')->setBlockId('amely_header_1_social')->setCanUsePanel($canUsePanel)->toHtml() ?>
+		</div>
+    </div>
+    <div class="middle-header-content">
+        <div class="container-fluid">
+            <div class="middle-header-wrapper">
+                <?php echo $block->getChildHtml('logo') ?>
+				<div class="nav-megamenu <?php echo $classMenu ?>">
+					<?php echo $mgsMegamenu ?>
+				</div>
+				<div class="child-content">
+					<div class="toogle_menu_mobile action nav-toggle"><span class="ti-menu"></span></div>
+					<?php echo $miniCart ?>
+					<?php echo $topSearch ?>
+				</div>
+            </div>
+        </div>
+    </div>
+<?php elseif($header == 'header_2'): ?>
+    <?php // Header 2 ?>
+	<div class="middle-header-content">
+        <div class="container-fluid">
+            <div class="middle-header-wrapper">
+				<div class="toogle_menu_mobile action nav-toggle"><span class="ti-menu"></span></div>
+				<div class="nav-megamenu <?php echo $classMenu ?>"><?php echo $mgsMegamenu ?></div>
+				<div class="child-content">
+					<?php echo $miniCart ?>
+					<?php echo $topSearch ?>
+				</div>
+            </div>
+        </div>
+    </div>
+<?php elseif($header == 'header_3'): ?>
+    <?php // Header 3 ?>
+	<div class="middle-header-content">
+		<div class="container">
+            <div class="middle-header-wrapper">
+            	<div class="toogle_menu_mobile action nav-toggle"><span class="ti-menu"></span></div>
+				<?php if($storeSetting): ?>
+					<div class="settings-content">
+						<?php echo $storeLanguage ?>
+						<?php echo $currency ?>
+					</div>
+				<?php endif ?>
+                <?php echo $block->getChildHtml('logo') ?>
+				<div class="child-content">
+					<?php echo $miniCart ?>
+					<div class="my-account-link">
+						<div class="actions toggle-toplinks">
+							<a class="toogle-action" href="javascript:void(0);"><span class="ti-user"></span></a>
+						</div>
+						<div class="toplinks-content"><?php echo $topLink ?></div>
+					</div>
+					<?php echo $topSearch ?>
+				</div>
+            </div>
+        </div>
+	</div>
+	<div class="bottom-header-content">
+        <div class="container">
+            <div class="bottom-header-wrapper">
+				<div class="nav-megamenu <?php echo $classMenu ?>"><?php echo $mgsMegamenu ?></div>
+            </div>
+        </div>
+    </div>
+<?php elseif($header == 'header_4'): ?>
+    <?php // Header 4 ?>
+	<div class="middle-header-content">
+        <div class="container-fluid">
+            <div class="middle-header-wrapper">
+				<div class="toogle_menu_mobile action nav-toggle"><span class="ti-menu"></span></div>
+                <?php echo $block->getChildHtml('logo') ?>
+				<div class="nav-megamenu <?php echo $classMenu ?>"><?php echo $mgsMegamenu ?></div>
+				<div class="child-content">
+					<?php echo $miniCart ?>
+					<div class="my-account-link">
+						<div class="actions toggle-toplinks">
+							<a class="toogle-action" href="javascript:void(0);"><span class="ti-user"></span></a>
+						</div>
+						<div class="toplinks-content"><?php echo $topLink ?></div>
+					</div>
+					<?php if($storeSetting): ?>
+					<div class="page-settings">
+						<div class="actions toggle-settings">
+							<a class="toogle-action" href="javascript:void(0);"><span class="ti-settings"></span></a>
+						</div>
+						<div class="settings-content">
+							<?php echo $storeLanguage ?>
+							<?php echo $currency ?>
+						</div>
+					</div>
+					<?php endif ?>
+					<?php echo $topSearch ?>
+				</div>
+            </div>
+        </div>
+    </div>
+<?php elseif($header == 'header_5'): ?>
+    <?php // Header 5 ?>
+	<div class="middle-header-content">
+        <div class="container-fluid">
+            <div class="middle-header-wrapper">
+				<div class="toogle_menu_mobile action nav-toggle"><span class="ti-menu"></span></div>
+				<?php if(!$menuHelper->getStoreConfig('megamenu/general/logo_center') || !$menuHelper->getStoreConfig('megamenu/general/home')): ?>
+				    <?php echo $block->getChildHtml('logo') ?>
+				<?php endif;?>
+				<div class="nav-megamenu <?php echo $classMenu ?>"><?php echo $mgsMegamenu ?></div>
+				<div class="child-content">
+					<?php echo $miniCart ?>
+					<?php echo $topSearch ?>
+				</div>
+            </div>
+        </div>
+    </div>
+<?php elseif($header == 'header_6'): ?>
+    <?php // Header 6 ?>
+	<div class="middle-header-content">
+        <div class="container-fluid">
+            <div class="middle-header-wrapper">
+            	<div class="left-content">
+					<div class="toogle_menu_mobile action nav-toggle"><span class="ti-menu"></span></div>
+					<?php echo $block->getChildHtml('logo') ?>
+				</div>
+				<div class="child-content">
+					<?php echo $topSearch ?>
+					<?php echo $miniCart ?>
+				</div>
+            </div>
+        </div>
+    </div>
+<?php elseif($header == 'header_7'): ?>
+<?php // Header 7 ?>
+    <div class="middle-header-content">
+        <div class="container-fluid">
+            <div class="middle-header-wrapper">
+				<div class="toogle_menu_mobile action nav-toggle"><span class="ti-menu"></span></div>
+				<div class="nav-megamenu <?php echo $classMenu ?>"><?php echo $mgsMegamenu ?></div>
+                <?php echo $block->getChildHtml('logo') ?>
+				<div class="child-content">
+					<?php echo $miniCart ?>
+					<div class="my-account-link">
+						<div class="actions toggle-toplinks">
+							<a class="toogle-action" href="javascript:void(0);"><span class="ti-user"></span></a>
+						</div>
+						<div class="toplinks-content"><?php echo $topLink ?></div>
+					</div>
+					<?php if($storeSetting): ?>
+					<div class="page-settings">
+						<div class="actions toggle-settings">
+							<a class="toogle-action" href="javascript:void(0);"><span class="ti-settings"></span></a>
+						</div>
+						<div class="settings-content">
+							<?php echo $storeLanguage ?>
+							<?php echo $currency ?>
+						</div>
+					</div>
+					<?php endif ?>
+					<?php echo $topSearch ?>
+				</div>
+            </div>
+        </div>
+    </div>
+<?php elseif($header == 'header_8'): ?>
+    <?php // Header 8 ?>
+    <div class="middle-header-content">
+        <div class="container">
+            <div class="middle-content">
+                <div class="toogle_menu_mobile action nav-toggle"><span class="ti-menu"></span></div>
+                <?php echo $block->getChildHtml('logo') ?>
+                <div class="nav-megamenu <?php echo $classMenu ?>"><?php echo $mgsMegamenu ?></div>
+                <div class="child-content">
+                    <?php echo $topSearch ?>
+                    <div class="my-account-link">
+						<div class="actions toggle-toplinks">
+							<a class="toogle-action" href="javascript:void(0);"><span class="ti-user"></span></a>
+						</div>
+						<div class="toplinks-content"><?php echo $topLink ?></div>
+					</div>
+                    <?php echo $miniCart ?>
+				</div>
+                <?php if($storeSetting): ?>
+                    <div class="settings-content">
+                        <?php echo $storeLanguage ?>
+                        <?php echo $currency ?>
+                    </div>
+                <?php endif ?>
+                <?php echo $this->getLayout()->createBlock('Magento\Cms\Block\Block')->setBlockId('amely_header_1_social')->setCanUsePanel($canUsePanel)->toHtml() ?>
+            </div>
+        </div>
+    </div>
+    <script type="text/javascript">
+        require([
+            "jquery"
+        ], function($){
+            $(document).ready(function(){
+                $(".header.header8 .navigation .nav-main-menu > li.mega-menu-fullwidth:not(.menu-2columns)").hover(function() {
+                    if($(window).width() > 1199){
+                        var widthMenu = $(window).width() - 360;
+                        $(this).find("> .dropdown-menu").width(widthMenu);
+                    }
+                });
+                $(".header.header8 .navigation .nav-main-menu > li.mega-menu-fullwidth.menu-2columns").hover(function() {
+                    if($(window).width() > 1199){
+                        $(this).find("> .dropdown-menu").width(500);
+                    }
+                });
+            });
+        });
+    </script>
+<?php endif ?>
+<script type="text/javascript">
+    require([ 'jquery' ], function($){
+		$(document).ready(function(){
+			$("#mainMenu").clone().appendTo("#mobile_navigation_menu");
+		});
+    });
+</script>

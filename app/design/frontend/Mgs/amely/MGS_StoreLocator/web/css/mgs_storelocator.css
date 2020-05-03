@@ -1,0 +1,196 @@
+.store-list-container .search-form {
+  border: 1px solid #eee;
+  margin-bottom: 30px;
+  border-radius: 0 0 5px 5px;
+}
+.store-list-container .search-form h3.title {
+  border-bottom: 1px solid #eee;
+  padding: 11px 15px;
+  margin: 0;
+  text-transform: uppercase;
+  font-size: 20px;
+  font-weight: 600;
+}
+.store-list-container .search-form .row {
+  margin-left: -5px;
+  margin-right: -5px;
+}
+.store-list-container .search-form .row .col {
+  padding: 0 5px;
+}
+.store-list-container .search-form .content-block {
+  padding: 10px 15px 15px;
+}
+.store-list-container .store-list {
+  border: 1px solid #eee;
+  border-radius: 0 0 5px 5px;
+  overflow: hidden;
+}
+.store-list-container .store-list h3 {
+  border-bottom: 1px solid #eee;
+  padding: 11px 15px;
+  margin: 0;
+  text-transform: uppercase;
+  font-size: 20px;
+  font-weight: 600;
+}
+.store-list-container .store-list .items {
+  padding: 15px;
+  max-height: 615px;
+  overflow: auto;
+}
+.store-list-container .store-list .items .alert {
+  margin: 0;
+}
+.store-list-container .store-list .items li {
+  border: 1px solid #ccc;
+  padding: 10px;
+  border-radius: 5px;
+  margin: 0 0 10px 0;
+}
+.store-list-container .store-list .items .store-infor .store-content {
+  display: table;
+}
+.store-list-container .store-list .items .store-infor .store-content .store-logo {
+  display: table-cell;
+  vertical-align: top;
+  width: 100px;
+}
+.store-list-container .store-list .items .store-infor .store-content .description {
+  padding-left: 15px;
+  display: table-cell;
+  vertical-align: top;
+}
+.store-list-container .store-list .items .store-infor .store-content .description h4 {
+  font-size: 16px;
+  margin: 0 0 8px;
+}
+.store-list-container .store-list .items .store-infor .store-content .description .btn-primary {
+  font-size: 12px;
+  padding: 8px 20px;
+}
+.store-list-container.store-items.items {
+  border: 1px solid #eee;
+  overflow: hidden;
+}
+.store-list-container.store-items.items .store-list {
+  border: 0;
+  border-radius: 0;
+  overflow: visible;
+}
+.store-list-container.store-items.items > .row {
+  margin: 0;
+}
+.store-list-container.store-items.items > .row > .col-xs-12 {
+  padding: 0;
+}
+.store-list-container .bottom-action {
+  border-top: 1px solid #eee;
+  padding: 15px;
+}
+.store-list-container .bottom-action:after {
+  content: "";
+  display: table;
+  clear: both;
+}
+.store-list-container .bottom-action > .pager {
+  margin: 0;
+  float: left;
+  vertical-align: top;
+}
+.store-list-container .bottom-action > .pager .toolbar-amount {
+  display: none;
+}
+.store-list-container .bottom-action .show-all-store {
+  float: right;
+  vertical-align: top;
+}
+.store-list-container .bottom-action .btn {
+  padding-top: 9px;
+  padding-bottom: 9px;
+}
+@media (max-width: 767px) {
+  .store-list-container .bottom-action > .pager {
+    float: none;
+    display: table;
+    margin: 0 auto 15px;
+  }
+  .store-list-container .bottom-action .show-all-store {
+    width: 100%;
+  }
+  .store-list-container .bottom-action .btn {
+    width: 100%;
+  }
+}
+#store-list-map {
+  height: 660px;
+  width: 100%;
+}
+@media (max-width: 991px) {
+  #store-list-map {
+    margin-top: 30px;
+  }
+}
+@media (max-width: 767px) {
+  #store-list-map {
+    height: 400px;
+  }
+}
+#map-detail {
+  height: 500px;
+  margin-bottom: 80px;
+}
+@media (max-width: 767px) {
+  #map-detail {
+    height: 400px;
+  }
+}
+.map-short-info {
+  font-size: 12px;
+  max-width: 180px;
+  border-radius: 5px;
+}
+.map-short-info h3 {
+  font-size: 14px;
+  font-weight: 700;
+  color: #212121;
+  margin: 5px 0 10px;
+}
+.map-short-info p {
+  margin-bottom: 5px;
+}
+.map-short-info a {
+  color: #ff000;
+  font-size: 14px;
+  font-weight: 500;
+}
+.box-store {
+  border: 1px solid #eee;
+  border-radius: 0 0 5px 5px;
+}
+.box-store h3 {
+  border-bottom: 1px solid #eee;
+  padding: 11px 15px;
+  margin: 0;
+  text-transform: uppercase;
+  font-size: 20px;
+  font-weight: 600;
+}
+.box-store .box-store-content {
+  padding: 15px;
+}
+.box-store .box-store-content table {
+  width: 100%;
+  margin-bottom: 0;
+}
+.box-store .box-store-content table tr td,
+.box-store .box-store-content table tr th {
+  border: 1px solid #eee;
+  padding: 10px;
+}
+.box-store .store-image {
+  margin-bottom: 20px;
+}
+.box-store .store-image img {
+  margin: 0 auto;
+}

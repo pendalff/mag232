@@ -1,0 +1,116 @@
+<?php
+/**
+ * Copyright © 2013-2017 Magento, Inc. All rights reserved.
+ * See COPYING.txt for license details.
+ */
+use Magento\Framework\App\Action\Action;
+
+// @codingStandardsIgnoreFile
+
+?>
+<?php
+/**
+ * Product list template
+ *
+ * @var $block \MGS\InstantSearch\Block\SearchResult\ListProduct
+ */
+?>
+<?php
+$_productCollection = $block->getLoadedProductCollection();
+$limit = $block->getPositionLimit();
+?>
+ <?php
+	$_helper = $this->helper('Magento\Catalog\Helper\Output');
+	$themeHelper = $this->helper('MGS\Mpanel\Helper\Data');
+	$settings = $themeHelper->getThemeSettings();
+	$_imagehelper = $this->helper('Magento\Catalog\Helper\Image');
+	$quickViewHelper = $this->helper('MGS\QuickView\Helper\Data');
+?>
+
+<?php
+	// Backend Config
+	$ratio = $themeHelper->getStoreConfig('mpanel/catalog/picture_ratio');
+	$lazyLoad = $themeHelper->getStoreConfig('mgstheme/general/lazy_load');
+	$mbItem = $themeHelper->getStoreConfig('mpanel/catalog/product_per_row_mb');
+?>
+
+<?php $size = $themeHelper->getImageSize($ratio); ?>
+<?php $padding = $themeHelper->getImagePadding($ratio); ?>
+<?php $baseImage = $this->getViewFileUrl('MGS_Mpanel::images/blank'.$ratio.'.png'); ?>
+<?php $fk = $block->getBlockHtml('formkey'); ?>
+
+<?php
+	$showCompare = $settings['catalog']['compare_button'] ? false : true;
+	$showWishList = $settings['catalog']['wishlist_button'] && $this->helper('Magento\Wishlist\Helper\Data')->isAllow() ? false : true;
+	$hoverChange = $settings['catalog']['hover_change'] ? true : false;
+?>
+<div class="block block-title">
+    <h4><?php echo __('Products') ?></h4>
+    <?php if($_productCollection->count() && $_productCollection->getSize() > $limit): ?>
+        <div class="view-more">
+            <a href="<?php /* @escapeNotVerified */ echo $block->getResultUrl() ?>"><?php /* @escapeNotVerified */ echo $block->getViewMoreLabel() ?></a>
+        </div>
+    <?php endif; ?>
+</div>
+<?php if (!$_productCollection->count()): ?>
+    <div class="message info empty"><div><?php /* @escapeNotVerified */ echo __('We can\'t find products matching the selection.') ?></div></div>
+<?php else: ?>
+	<?php
+        $viewMode = 'grid';
+        $imageDisplayArea = 'category_page_grid';
+        $showDescription = $block->showShortDescription();
+        $showReview = $block->showReview();
+        $templateType = \Magento\Catalog\Block\Product\ReviewRendererInterface::SHORT_VIEW;
+        /**
+         * Position for actions regarding image size changing in vde if needed
+         */
+        $pos = $block->getPositioned();
+    ?>
+	<div class="products wrapper <?php /* @escapeNotVerified */ echo $viewMode; ?> products-<?php /* @escapeNotVerified */ echo $viewMode; ?>">
+		<?php $iterator = 1; ?>
+		<ol class="products list items product-items row row-wrapper row-3">
+            <?php /** @var $_product \Magento\Catalog\Model\Product */ ?>
+            <?php foreach ($_productCollection as $_product): ?>
+				<?php $wlDataPost = $block->getAddToWishlistParams($_product); ?>
+				<?php $fk = $block->getBlockHtml('formkey')?>
+				<?php $postParams = $block->getAddToCartPostParams($_product); ?>
+				<?php $review = $block->getReviewsSummaryHtml($_product, \Magento\Catalog\Block\Product\ReviewRendererInterface::SHORT_VIEW); ?>
+				<?php $prdPrice = $block->getProductPrice($_product) ?>
+				 
+				<li class="item product product-item col">
+				   <?php echo $this->getLayout()
+									->createBlock('Magento\Framework\View\Element\Template')
+									->setProduct($_product)
+									->setThemeHelper($themeHelper)
+									->setImageHelper($_imagehelper)
+									->setCatalogHelperOutput($_helper)
+									->setQuickViewHelper($quickViewHelper)
+									->setRatio($ratio)
+									->setSize($size)
+									->setPadding($padding)
+									->setLazyLoadBaseImage($baseImage)
+									->setCompare($showCompare)
+									->setFk($fk)
+									->setPostParams($postParams)
+									->setReview($review)
+									->setPrdPrice($prdPrice)
+									->setWishList($showWishList)
+									->setWishListPost($wlDataPost)
+									->setTemplate('MGS_Mpanel::products/product_item/grid/default.phtml')
+									->setSwatches('')
+									->setHoverChange($hoverChange)
+									->toHtml(); ?>
+				</li>
+			<?php endforeach ?>
+        </ol>
+	</div>
+    <?php if (!$block->isRedirectToCartEnabled()) : ?>
+        <script type="text/x-magento-init">
+        {
+            "[data-role=tocart-form], .form.map.checkout": {
+                "catalogAddToCart": {}
+            }
+        }
+        </script>
+    <?php endif; ?>
+<?php endif; ?>

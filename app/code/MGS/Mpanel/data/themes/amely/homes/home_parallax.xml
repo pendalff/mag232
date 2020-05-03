@@ -1,0 +1,131 @@
+<home>
+	<section>
+		<name><![CDATA[block329]]></name>
+		<theme_name><![CDATA[]]></theme_name>
+		<block_cols><![CDATA[12]]></block_cols>
+		<tablet_cols><![CDATA[["12"]]]></tablet_cols>
+		<large_cols><![CDATA[["12"]]]></large_cols>
+		<medium_cols><![CDATA[["12"]]]></medium_cols>
+		<mobile_cols><![CDATA[["12"]]]></mobile_cols>
+		<block_class><![CDATA[[""]]]></block_class>
+		<class><![CDATA[lookbook_banner parallax]]></class>
+		<background><![CDATA[]]></background>
+		<background_image><![CDATA[/p/a/parallax-1.jpg]]></background_image>
+		<background_repeat><![CDATA[0]]></background_repeat>
+		<background_cover><![CDATA[0]]></background_cover>
+		<parallax><![CDATA[0]]></parallax>
+		<fullwidth><![CDATA[0]]></fullwidth>
+		<padding_top><![CDATA[]]></padding_top>
+		<padding_bottom><![CDATA[]]></padding_bottom>
+		<block_position><![CDATA[1]]></block_position>
+	</section>
+	<section>
+		<name><![CDATA[block330]]></name>
+		<theme_name><![CDATA[]]></theme_name>
+		<block_cols><![CDATA[12]]></block_cols>
+		<tablet_cols><![CDATA[["12"]]]></tablet_cols>
+		<large_cols><![CDATA[["12"]]]></large_cols>
+		<medium_cols><![CDATA[["12"]]]></medium_cols>
+		<mobile_cols><![CDATA[["12"]]]></mobile_cols>
+		<block_class><![CDATA[[""]]]></block_class>
+		<class><![CDATA[lookbook_banner parallax]]></class>
+		<background><![CDATA[]]></background>
+		<background_image><![CDATA[/p/a/parallax-2.jpg]]></background_image>
+		<background_repeat><![CDATA[0]]></background_repeat>
+		<background_cover><![CDATA[0]]></background_cover>
+		<parallax><![CDATA[0]]></parallax>
+		<fullwidth><![CDATA[1]]></fullwidth>
+		<padding_top><![CDATA[]]></padding_top>
+		<padding_bottom><![CDATA[]]></padding_bottom>
+		<block_position><![CDATA[2]]></block_position>
+	</section>
+	<section>
+		<name><![CDATA[block331]]></name>
+		<theme_name><![CDATA[]]></theme_name>
+		<block_cols><![CDATA[12]]></block_cols>
+		<tablet_cols><![CDATA[["12"]]]></tablet_cols>
+		<large_cols><![CDATA[["12"]]]></large_cols>
+		<medium_cols><![CDATA[["12"]]]></medium_cols>
+		<mobile_cols><![CDATA[["12"]]]></mobile_cols>
+		<block_class><![CDATA[[""]]]></block_class>
+		<class><![CDATA[lookbook_banner parallax]]></class>
+		<background><![CDATA[]]></background>
+		<background_image><![CDATA[/p/a/parallax-3_1.jpg]]></background_image>
+		<background_repeat><![CDATA[0]]></background_repeat>
+		<background_cover><![CDATA[0]]></background_cover>
+		<parallax><![CDATA[0]]></parallax>
+		<fullwidth><![CDATA[1]]></fullwidth>
+		<padding_top><![CDATA[]]></padding_top>
+		<padding_bottom><![CDATA[]]></padding_bottom>
+		<block_position><![CDATA[3]]></block_position>
+	</section>
+	<section>
+		<name><![CDATA[block332]]></name>
+		<theme_name><![CDATA[]]></theme_name>
+		<block_cols><![CDATA[12]]></block_cols>
+		<tablet_cols><![CDATA[["12"]]]></tablet_cols>
+		<large_cols><![CDATA[["12"]]]></large_cols>
+		<medium_cols><![CDATA[["12"]]]></medium_cols>
+		<mobile_cols><![CDATA[["12"]]]></mobile_cols>
+		<block_class><![CDATA[[""]]]></block_class>
+		<class><![CDATA[lookbook_banner parallax]]></class>
+		<background><![CDATA[]]></background>
+		<background_image><![CDATA[/p/a/parallax-4_1.jpg]]></background_image>
+		<background_repeat><![CDATA[0]]></background_repeat>
+		<background_cover><![CDATA[0]]></background_cover>
+		<parallax><![CDATA[0]]></parallax>
+		<fullwidth><![CDATA[1]]></fullwidth>
+		<padding_top><![CDATA[]]></padding_top>
+		<padding_bottom><![CDATA[]]></padding_bottom>
+		<block_position><![CDATA[4]]></block_position>
+	</section>
+	<block>
+		<block_name><![CDATA[block329-0]]></block_name>
+		<type><![CDATA[static]]></type>
+		<position><![CDATA[1]]></position>
+		<setting><![CDATA[{"animation":"","animation_delay":""}]]></setting>
+		<col><![CDATA[12]]></col>
+		<class><![CDATA[]]></class>
+		<block_content><![CDATA[<div class="parallax-content text-center">
+<div class="sub-title">Lookbook ss2018</div>
+<div class="title">The next chapter</div>
+<button class="btn btn-default">shop all collection</button></div>]]></block_content>
+	</block>
+	<block>
+		<block_name><![CDATA[block330-0]]></block_name>
+		<type><![CDATA[static]]></type>
+		<position><![CDATA[1]]></position>
+		<setting><![CDATA[{"animation":"","animation_delay":""}]]></setting>
+		<col><![CDATA[12]]></col>
+		<class><![CDATA[]]></class>
+		<block_content><![CDATA[<div class="parallax-content parallax-text para-right para-color ">
+<div class="sub-title">Cashmere Collection</div>
+<div class="title">Basic instinct</div>
+<button class="btn btn-default">Shop now</button></div>]]></block_content>
+	</block>
+	<block>
+		<block_name><![CDATA[block331-0]]></block_name>
+		<type><![CDATA[static]]></type>
+		<position><![CDATA[1]]></position>
+		<setting><![CDATA[{"animation":"","animation_delay":""}]]></setting>
+		<col><![CDATA[12]]></col>
+		<class><![CDATA[]]></class>
+		<block_content><![CDATA[<div class="parallax-content parallax-text para-left">
+<div class="sub-title">Shoes collection</div>
+<div class="title">The trends </br> of the season</div>
+<button class="btn btn-default">Shop now</button></div>]]></block_content>
+	</block>
+	<block>
+		<block_name><![CDATA[block332-0]]></block_name>
+		<type><![CDATA[static]]></type>
+		<position><![CDATA[1]]></position>
+		<setting><![CDATA[{"animation":"","animation_delay":""}]]></setting>
+		<col><![CDATA[12]]></col>
+		<class><![CDATA[]]></class>
+		<block_content><![CDATA[<div class="parallax-content para-color text-center para-color">
+<div class="sub-title">spring summer 2018</div>
+<div class="title">Freedom &amp; Comfort</div>
+<button class="btn btn-default">Shop now</button></div>]]></block_content>
+	</block>
+
+</home>

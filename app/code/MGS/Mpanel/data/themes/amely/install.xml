@@ -1,0 +1,171 @@
+<install>
+	<static_block>
+		<item>
+			<title>Amely Footer 1 Payment Icon</title>
+			<identifier>amely_footer_1_payment_icon</identifier>
+			<content><![CDATA[<div><img class="img-fluid" src="{{media url="wysiwyg/payment_icon.png"}}" alt="" /></div>]]></content>
+		</item>
+		<item>
+			<title>Amely Footer 1 Social</title>
+			<identifier>amely_footer_1_social</identifier>
+			<content><![CDATA[<ul class="list-inline">
+<li><a href="#">Privacy Policy&nbsp;</a></li>
+<li><a href="#">Returns&nbsp;</a></li>
+<li><a href="#">Promotions</a></li>
+</ul>
+<ul class="social-links">
+<li><a href="#" target="_self"> <i class="ti-facebook"></i></a></li>
+<li><a href="#" target="_self"><i class="ti-twitter"></i></a></li>
+<li><a href="#" target="_self"><i class="ti-instagram"></i></a></li>
+<li><a href="#" target="_self"><i class="ti-linkedin"></i></a></li>
+</ul>]]></content>
+		</item>
+		<item>
+			<title>Amely Footer 1 Newsletter</title>
+			<identifier>amely_footer_1_newsletter</identifier>
+			<content><![CDATA[<div class="inline-newsletter">
+<h4 class="title">Newsletter</h4>
+<p>Get the latest news &amp; updates from Shopie</p>
+{{block class="Magento\\Newsletter\\Block\\Subscribe" template="Magento_Newsletter::subscribe.phtml"}}</div>]]></content>
+		</item>
+		<item>
+			<title>Amely Header 1 Order Online</title>
+			<identifier>amely_header_1_order_online</identifier>
+			<content><![CDATA[<div>Order Online Call Us 0123456789</div>]]></content>
+		</item>
+		<item>
+			<title>Amely Header 1 Social</title>
+			<identifier>amely_header_1_social</identifier>
+			<content><![CDATA[<ul class="header-socials">
+<li><a href="#" target="_self"><i class="ti-twitter"></i></a></li>
+<li><a href="#" target="_self"> <i class="ti-facebook"></i></a></li>
+<li><a href="#" target="_self"><i class="ti-google"></i></a></li>
+<li><a href="#" target="_self"><i class="ti-linkedin"></i></a></li>
+</ul>]]></content>
+		</item>
+		<item>
+			<title>Amely Footer 2 Coppy</title>
+			<identifier>amely_footer_2_coppy</identifier>
+			<content><![CDATA[<p><img src="{{media url="wysiwyg/amely_logo.png"}}" alt="" /></p>]]></content>
+		</item>
+		<item>
+			<title>Amely Footer 2 List Left</title>
+			<identifier>amely_footer_2_list_left</identifier>
+			<content><![CDATA[<ul class="list_block">
+<li><a href="#">Site Map</a></li>
+<li><a href="#">Store Location</a></li>
+<li><a href="#">My Account</a></li>
+<li><a href="#">Orders Tracking</a></li>
+<li><a href="#">Size Guide</a></li>
+</ul>]]></content>
+		</item>
+		<item>
+			<title>Amely Footer 2 List Right</title>
+			<identifier>amely_footer_2_list_right</identifier>
+			<content><![CDATA[<ul class="list_block">
+<li><a href="#">Privacy Pollcy </a></li>
+<li><a href="#">Returns </a></li>
+<li><a href="#">Promotions</a></li>
+<li><a href="#">FAQs</a></li>
+</ul>]]></content>
+		</item>
+		<item>
+			<title>Amely Footer 2 Follow</title>
+			<identifier>amely_footer_2_follow</identifier>
+			<content><![CDATA[<h5 class="follow-title">Follow Us On Social</h5>
+<ul class="social-links">
+<li><a href="#" target="_self"><i class="ti-twitter"></i></a></li>
+<li><a href="#" target="_self"> <i class="ti-facebook"></i></a></li>
+<li><a href="#" target="_self"><i class="ti-google"></i></a></li>
+<li><a href="#" target="_self"><i class="ti-linkedin"></i></a></li>
+</ul>]]></content>
+		</item>
+		<item>
+			<title>Amely Header 1 Social</title>
+			<identifier>amely_header_1_social</identifier>
+			<content><![CDATA[<ul class="header-socials">
+<li><a href="#" target="_self"><i class="ti-twitter"></i></a></li>
+<li><a href="#" target="_self"> <i class="ti-facebook"></i></a></li>
+<li><a href="#" target="_self"><i class="ti-google"></i></a></li>
+<li><a href="#" target="_self"><i class="ti-linkedin"></i></a></li>
+</ul>]]></content>
+		</item>
+		
+		<item>
+			<title>Contact Detail</title>
+			<identifier>amely_contact_custom_content</identifier>
+			<content><![CDATA[
+				<div class="contact_detail text-center">
+<div class="content-heading">
+<h3 class="title">Contact detail</h3>
+<div class="subtitle">Way is there to get clothing you&rsquo;re sure to love than by making it your know</div>
+</div>
+<div class="row">
+<div class="col-lg-4 col-md-4 col-sm-4 col-xs-4">
+<p><i class="ti-mobile contact-icon"></i></p>
+<h6><a href="#">PHONE</a></h6>
+<p class="contact-subtitle">Phone 01: +84 01122000</p>
+</div>
+<div class="col-lg-4 col-md-4 col-sm-4 col-xs-4  contact-address">
+<p><i class="ti-headphone-alt contact-icon"></i></p>
+<h6><a href="#">ADDRESS</a></h6>
+<p class="contact-subtitle">1800 Abbot Kinney Blvd. </br>Unit D, Venice</p>
+</div>
+<div class="col-lg-4 col-md-4 col-sm-4 col-xs-4">
+<p><i class="ti-lock contact-icon"></i></p>
+<h6><a href="#">EMAIL</a></h6>
+<p class="contact-subtitle">shopiestore@gmail.com </br> support@shopie.com</p>
+</div>
+</div>
+</div>
+			]]></content>
+		</item>
+		<item>
+			<title>Amely Contact Link Footer 5</title>
+			<identifier>amely_contact_link_footer_5</identifier>
+			<content><![CDATA[
+<ul class="contact-links">
+<li><a href="#">about us</a></li>
+<li><a href="#">store location</a></li>
+<li><a href="#">contact</a></li>
+<li><a href="#">support</a></li>
+<li><a href="#">policy</a></li>
+<li><a href="#">FAQs</a></li>
+</ul>]]></content>
+		</item>
+		<item>
+			<title>Amely Social Link Footer 5</title>
+			<identifier>amely_social_link_footer_5</identifier>
+			<content><![CDATA[
+<ul class="social-links">
+<li><a href="#" target="_self"> <i class="ti-facebook"></i></a></li>
+<li><a href="#" target="_self"><i class="ti-twitter"></i></a></li>
+<li><a href="#" target="_self"><i class="ti-instagram"></i></a></li>
+<li><a href="#" target="_self"><i class="ti-linkedin"></i></a></li>
+</ul>]]></content>
+		</item>
+    </static_block>
+    
+	<theme_setting>
+		<general>
+			<width>width1200</width>
+			<layout>wide</layout>
+			<header>header_1</header>
+			<footer>footer_1</footer>
+			<sticky_menu>1</sticky_menu>
+			<back_to_top>1</back_to_top>
+		</general>
+		<fonts>
+			<default_font><![CDATA[Poppins]]></default_font>
+			<h1><![CDATA[Poppins]]></h1>
+			<h2><![CDATA[Poppins]]></h2>
+			<h3><![CDATA[Poppins]]></h3>
+			<h4><![CDATA[Poppins]]></h4>
+			<h5><![CDATA[Poppins]]></h5>
+			<h6><![CDATA[Poppins]]></h6>
+			<price><![CDATA[Poppins]]></price>
+			<menu><![CDATA[Poppins]]></menu>
+			<btn><![CDATA[Poppins]]></btn>
+		</fonts>
+	</theme_setting>
+</install>

@@ -1,0 +1,62 @@
+<?php
+/**
+ * Copyright © 2016 Magento. All rights reserved.
+ * See COPYING.txt for license details.
+ */
+
+// @codingStandardsIgnoreFile
+
+/**
+ * @var \Magento\Theme\Block\Html\Header\Logo $block
+ */
+?>
+<?php
+$storeName = $block->getThemeName() ? $block->getThemeName() : $block->getLogoAlt();
+$themeHelper = $this->helper('MGS\Mpanel\Helper\Data'); 
+$logoSticky = $themeHelper->getStoreConfig('mgstheme/header/sticky_logo');
+?>
+
+<?php if ($block->isHomePage()):?>
+<strong class="logo align-items-center">
+<?php else: ?>
+<a class="logo align-items-center" href="<?php echo $block->getUrl(''); ?>" title="<?php /* @escapeNotVerified */ echo $storeName ?>">
+<?php endif ?>
+		<img class="<?php if($themeHelper->getStoreConfig('mgstheme/header/sticky_menu')) echo __('default-logo')?>" src="<?php /* @escapeNotVerified */ echo $block->getLogoSrc()?>"
+            alt=""
+            <?php echo $block->getLogoWidth() ? 'width="' . $block->getLogoWidth() . '"' : '' ?>
+            <?php echo $block->getLogoHeight() ? 'height="' . $block->getLogoHeight() . '"' : '' ?>
+            data-src="<?php /* @escapeNotVerified */ echo $block->getLogoSrc() ?>"
+            <?php echo $block->getLogoWidth() ? 'data-width="' . $block->getLogoWidth() . '"' : '' ?>
+            <?php echo $block->getLogoHeight() ? 'data-height="' . $block->getLogoHeight() . '"' : '' ?>
+        />
+		<!--Sticky Logo -->
+		<?php  
+			if($logoSticky !=""){
+				$logoSrc = $themeHelper ->getMediaUrl() . 'sticky_logo/' . $logoSticky ;
+			} 
+			$logoWidth = $block->getLogoWidth() ;
+			$logoHeight = $block->getLogoHeight() ;
+			if($themeHelper->getStoreConfig('mgstheme/header/sticky_logo_w') !=""){
+				$logoWidth  =  $themeHelper->getStoreConfig('mgstheme/header/sticky_logo_w');
+			}
+			if($themeHelper->getStoreConfig('mgstheme/header/sticky_logo_h') !=""){
+				$logoHeight = $themeHelper->getStoreConfig('mgstheme/header/sticky_logo_h');
+			}
+		?>
+		<?php if($themeHelper->getStoreConfig('mgstheme/header/sticky_menu')): ?>
+			<img class="sticky-logo" 
+				src="<?php if($logoSticky !=""){ echo $logoSrc; } else { echo $block->getLogoSrc(); } ?>"
+				alt=""
+				data-src="<?php if($logoSticky !=""){ echo $logoSrc; } else { echo $block->getLogoSrc(); } ?>"
+				<?php echo $logoWidth ? 'width="' .$logoWidth . '"' : '' ?>
+				<?php echo $logoHeight ? 'height="' . $logoHeight . '"' : '' ?>
+				<?php echo $logoWidth ? 'data-width="' . $logoWidth . '"' : '' ?>
+				<?php echo $logoHeight ? 'data-height="' . $logoHeight . '"' : '' ?>
+			/>
+		<?php endif ?>
+		
+<?php if ($block->isHomePage()):?>
+</strong>
+<?php else:?>
+</a>
+<?php endif?>

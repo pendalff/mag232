@@ -1,0 +1,20 @@
+<?xml version="1.0"?>
+<!--
+/**
+ * Copyright © 2015 Magento. All rights reserved.
+ * See COPYING.txt for license details.
+ */
+-->
+<layout xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:framework:View/Layout/etc/page_layout.xsd">
+
+	<referenceContainer name="page.wrapper" htmlTag="main" />
+	
+	<referenceContainer name="main.content" htmlTag="section" htmlClass="page-main container"/>
+	
+	<referenceContainer name="columns" htmlClass="row" />
+	
+	<move element="columns" destination="main.content" after="columns.top" />
+	
+	<referenceContainer name="main" htmlClass="column main col" />
+	
+</layout>

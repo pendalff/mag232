@@ -1,0 +1,196 @@
+<home>
+	<section>
+		<name><![CDATA[block2]]></name>
+		<theme_name><![CDATA[]]></theme_name>
+		<block_cols><![CDATA[12]]></block_cols>
+		<tablet_cols><![CDATA[["12"]]]></tablet_cols>
+		<large_cols><![CDATA[]]></large_cols>
+		<medium_cols><![CDATA[]]></medium_cols>
+		<mobile_cols><![CDATA[["12"]]]></mobile_cols>
+		<block_class><![CDATA[[""]]]></block_class>
+		<class><![CDATA[]]></class>
+		<background><![CDATA[]]></background>
+		<background_image><![CDATA[]]></background_image>
+		<background_repeat><![CDATA[0]]></background_repeat>
+		<background_cover><![CDATA[0]]></background_cover>
+		<parallax><![CDATA[0]]></parallax>
+		<fullwidth><![CDATA[1]]></fullwidth>
+		<padding_top><![CDATA[]]></padding_top>
+		<padding_bottom><![CDATA[]]></padding_bottom>
+		<block_position><![CDATA[2]]></block_position>
+	</section>
+	<section>
+		<name><![CDATA[block3]]></name>
+		<theme_name><![CDATA[]]></theme_name>
+		<block_cols><![CDATA[4,4,4]]></block_cols>
+		<tablet_cols><![CDATA[["6","6","12"]]]></tablet_cols>
+		<large_cols><![CDATA[["6","6","12"]]]></large_cols>
+		<medium_cols><![CDATA[["6","6","12"]]]></medium_cols>
+		<mobile_cols><![CDATA[["12","12","12"]]]></mobile_cols>
+		<block_class><![CDATA[["mg-bottom-20","mg-bottom-20","mg-bottom-20"]]]></block_class>
+		<class><![CDATA[col-padding-10]]></class>
+		<background><![CDATA[]]></background>
+		<background_image><![CDATA[]]></background_image>
+		<background_repeat><![CDATA[0]]></background_repeat>
+		<background_cover><![CDATA[0]]></background_cover>
+		<parallax><![CDATA[0]]></parallax>
+		<fullwidth><![CDATA[1]]></fullwidth>
+		<padding_top><![CDATA[20]]></padding_top>
+		<padding_bottom><![CDATA[]]></padding_bottom>
+		<block_position><![CDATA[3]]></block_position>
+	</section>
+	<section>
+		<name><![CDATA[block4]]></name>
+		<theme_name><![CDATA[]]></theme_name>
+		<block_cols><![CDATA[12]]></block_cols>
+		<tablet_cols><![CDATA[["12"]]]></tablet_cols>
+		<large_cols><![CDATA[["12"]]]></large_cols>
+		<medium_cols><![CDATA[["12"]]]></medium_cols>
+		<mobile_cols><![CDATA[["12"]]]></mobile_cols>
+		<block_class><![CDATA[[""]]]></block_class>
+		<class><![CDATA[]]></class>
+		<background><![CDATA[]]></background>
+		<background_image><![CDATA[]]></background_image>
+		<background_repeat><![CDATA[0]]></background_repeat>
+		<background_cover><![CDATA[0]]></background_cover>
+		<parallax><![CDATA[0]]></parallax>
+		<fullwidth><![CDATA[0]]></fullwidth>
+		<padding_top><![CDATA[90]]></padding_top>
+		<padding_bottom><![CDATA[101]]></padding_bottom>
+		<block_position><![CDATA[4]]></block_position>
+	</section>
+	<section>
+		<name><![CDATA[block5]]></name>
+		<theme_name><![CDATA[]]></theme_name>
+		<block_cols><![CDATA[12]]></block_cols>
+		<tablet_cols><![CDATA[["12"]]]></tablet_cols>
+		<large_cols><![CDATA[["12"]]]></large_cols>
+		<medium_cols><![CDATA[["12"]]]></medium_cols>
+		<mobile_cols><![CDATA[["12"]]]></mobile_cols>
+		<block_class><![CDATA[[""]]]></block_class>
+		<class><![CDATA[border-top-solid section-boxed]]></class>
+		<background><![CDATA[]]></background>
+		<background_image><![CDATA[]]></background_image>
+		<background_repeat><![CDATA[0]]></background_repeat>
+		<background_cover><![CDATA[0]]></background_cover>
+		<parallax><![CDATA[0]]></parallax>
+		<fullwidth><![CDATA[1]]></fullwidth>
+		<padding_top><![CDATA[93]]></padding_top>
+		<padding_bottom><![CDATA[60]]></padding_bottom>
+		<block_position><![CDATA[5]]></block_position>
+	</section>
+	<block>
+		<block_name><![CDATA[block3-0]]></block_name>
+		<type><![CDATA[promo_banner]]></type>
+		<position><![CDATA[1]]></position>
+		<setting><![CDATA[{"title":"","additional_content":"","animation":"","animation_delay":"","text_colour":"","link_colour":"","link_hover_colour":"","button_colour":"","button_hover_colour":"","button_text_colour":"","button_text_hover_colour":"","button_border_colour":"","button_border_hover_colour":"","banner_id":"amely_home_1_sping_summer_collection"}]]></setting>
+		<col><![CDATA[12]]></col>
+		<class><![CDATA[col-xs-12]]></class>
+		<block_content><![CDATA[{{widget type="MGS\Promobanners\Block\Widget\Banner" banner_id="amely_home_1_sping_summer_collection" template="banner.phtml"}}]]></block_content>
+	</block>
+	<block>
+		<block_name><![CDATA[block3-1]]></block_name>
+		<type><![CDATA[promo_banner]]></type>
+		<position><![CDATA[1]]></position>
+		<setting><![CDATA[{"title":"","additional_content":"","animation":"","animation_delay":"","text_colour":"","link_colour":"","link_hover_colour":"","button_colour":"","button_hover_colour":"","button_text_colour":"","button_text_hover_colour":"","button_border_colour":"","button_border_hover_colour":"","banner_id":"amely_home_1_cute_clothers"}]]></setting>
+		<col><![CDATA[12]]></col>
+		<class><![CDATA[]]></class>
+		<block_content><![CDATA[{{widget type="MGS\Promobanners\Block\Widget\Banner" banner_id="amely_home_1_cute_clothers" template="banner.phtml"}}]]></block_content>
+	</block>
+	<block>
+		<block_name><![CDATA[block3-2]]></block_name>
+		<type><![CDATA[promo_banner]]></type>
+		<position><![CDATA[1]]></position>
+		<setting><![CDATA[{"title":"","additional_content":"","animation":"","animation_delay":"","text_colour":"","link_colour":"","link_hover_colour":"","button_colour":"","button_hover_colour":"","button_text_colour":"","button_text_hover_colour":"","button_border_colour":"","button_border_hover_colour":"","banner_id":"amely_home_1_shoes_collection"}]]></setting>
+		<col><![CDATA[12]]></col>
+		<class><![CDATA[]]></class>
+		<block_content><![CDATA[{{widget type="MGS\Promobanners\Block\Widget\Banner" banner_id="amely_home_1_shoes_collection" template="banner.phtml"}}]]></block_content>
+	</block>
+	<block>
+		<block_name><![CDATA[block5-0]]></block_name>
+		<type><![CDATA[instagram]]></type>
+		<position><![CDATA[1]]></position>
+		<setting><![CDATA[{"title":"Follow Us On Instagram","additional_content":"@amely_store","animation":"","animation_delay":"","limit":"15","perrow":"5","resolution":"low_resolution","link":"1","like":"1","comment":"1","use_slider":"1","number_row":"1","autoplay":"1","stop_auto":"1","navigation":"1","pagination":"1"}]]></setting>
+		<col><![CDATA[12]]></col>
+		<class><![CDATA[col-sm-12 col-xs-12]]></class>
+		<block_content><![CDATA[{{block class="MGS\Social\Block\Panel\Widget" mgs_panel_title="Follow Us On Instagram" mgs_panel_note="@amely_store" limit="15" resolution="low_resolution" link="1" perrow="5" use_slider="1" like="1" comment="1" autoplay="1" stop_auto="1" navigation="1" pagination="1" number_row="1" template="widget/instagram.phtml"}}]]></block_content>
+	</block>
+	<block>
+		<block_name><![CDATA[block4-0]]></block_name>
+		<type><![CDATA[category_products]]></type>
+		<position><![CDATA[2]]></position>
+		<setting><![CDATA[{"title":"Trendy Clothing","additional_content":"Way is there to get clothing you\u2019re sure to love than by making it your know","animation":"","animation_delay":"","limit":"12","perrow":"4","template":"grid.phtml","ratio":"","loadmore":"1","number_row":"1","category_id":["4"],"text_colour":"","link_colour":"","link_hover_colour":"","button_colour":"","button_hover_colour":"","button_text_colour":"","button_text_hover_colour":"","button_border_colour":"","button_border_hover_colour":"","use_slider":0,"autoplay":0,"stop_auto":0,"navigation":0,"pagination":0,"use_tabs":0}]]></setting>
+		<col><![CDATA[12]]></col>
+		<class><![CDATA[]]></class>
+		<block_content><![CDATA[{{block class="MGS\Mpanel\Block\Products\Category" mgs_panel_title="Trendy Clothing" mgs_panel_note="Way is there to get clothing you’re sure to love than by making it your know" limit="12" ratio="" category_ids="4" use_slider="0" loadmore="1" template="products/category_products/grid.phtml" perrow="4"}}]]></block_content>
+	</block>
+	<block>
+		<block_name><![CDATA[block2-0]]></block_name>
+		<type><![CDATA[owl_banner]]></type>
+		<position><![CDATA[1]]></position>
+		<setting><![CDATA[{"block_link":"","animation":"","animation_delay":"","removeimg":["","","","","",""],"html_slider":"<div data-text-position=\"bottom_left\" data-text-animate=\"slideInLeft\" class=\"item slideInLeft\"><a class=\"item-image\" href=\"\" style=\"background-image:url(http:\/\/mgs.arrowhitech.net\/amely\/pub\/media\/wysiwyg\/slider\/h1sld1.jpg)\"><img class=\"img-fluid\" src=\"pub\/media\/wysiwyg\/slider\/h1sld1.jpg\" alt=\"\"><\/a><div class=\"slide-text bottom_left\"><div class=\"inner-text\"><div class=\"slide-content\">\r\n<div class=\"subtitle\"><span class=\"count\">01<\/span><span class=\"text\">For girls<\/span><\/div>\r\n<div class=\"title\"><span class=\"h1 nowrap\">Dresses of Africa,<br>Oceania &amp; Asia<\/span><\/div>\r\n<a class=\"banner-button\" href=\"#\">SHOP NOW<\/a>\r\n<\/div><\/div><\/div><\/div><div data-text-position=\"bottom_left\" data-text-animate=\"slideInRight\" class=\"item slideInRight\"><a class=\"item-image\" href=\"\" style=\"background-image:url(pub\/media\/wysiwyg\/slider\/h1sld2.jpg)\"><img class=\"img-fluid\" src=\"pub\/media\/wysiwyg\/slider\/h1sld2.jpg\" alt=\"\"><\/a><div class=\"slide-text bottom_left\"><div class=\"inner-text\"><div class=\"slide-content\">\r\n<div class=\"subtitle\"><span class=\"count\">02<\/span><span class=\"text\">For men<\/span><\/div>\r\n<div class=\"title\"><span class=\"h1 nowrap\">Meet the trends<br> of the season<\/span><\/div>\r\n<a class=\"banner-button\" href=\"#\">SHOP NOW<\/a>\r\n<\/div><\/div><\/div><\/div><div data-text-position=\"bottom_left\" data-text-animate=\"slideInDown\" class=\"item slideInDown\"><a class=\"item-image\" href=\"\" style=\"background-image:url(pub\/media\/wysiwyg\/slider\/h1sld3.jpg)\"><img class=\"img-fluid\" src=\"pub\/media\/wysiwyg\/slider\/h1sld3.jpg\" alt=\"\"><\/a><div class=\"slide-text bottom_left\"><div class=\"inner-text\"><div class=\"slide-content\">\r\n<div class=\"subtitle\"><span class=\"count\">03<\/span><span class=\"text\">Accessories<\/span><\/div>\r\n<div class=\"title\"><span class=\"h1 nowrap\">New collection<br> A-W ss18<\/span><\/div>\r\n<a class=\"banner-button\" href=\"#\">SHOP NOW<\/a>\r\n<\/div><\/div><\/div><\/div>","fullscreen":"1","offset":"","effect":"1","autoplay":"1","speed":"6000","navigation":"1","pagination":"1","navtemple":"1","loop":"1","stop_auto":0,"fullheight":0}]]></setting>
+		<col><![CDATA[12]]></col>
+		<class><![CDATA[]]></class>
+		<block_content><![CDATA[{{block class="MGS\Mpanel\Block\Widget\OwlCarousel" fullscreen="1" autoplay="1" stop_auto="0" navigation="1" offset="" fullheight="0" pagination="1" loop="1" speed="6000" html_slider="&lt;div data-text-position=&quot;bottom_left&quot; data-text-animate=&quot;slideInLeft&quot; class=&quot;item slideInLeft&quot;&gt;&lt;a class=&quot;item-image&quot; href=&quot;&quot; style=&quot;background-image:url(pub/media/wysiwyg/slider/h1sld1.jpg)&quot;&gt;&lt;img class=&quot;img-fluid&quot; src=&quot;pub/media/wysiwyg/slider/h1sld1.jpg&quot; alt=&quot;&quot;&gt;&lt;/a&gt;&lt;div class=&quot;slide-text bottom_left&quot;&gt;&lt;div class=&quot;inner-text&quot;&gt;&lt;div class=&quot;slide-content&quot;&gt;
+&lt;div class=&quot;subtitle&quot;&gt;&lt;span class=&quot;count&quot;&gt;01&lt;/span&gt;&lt;span class=&quot;text&quot;&gt;For girls&lt;/span&gt;&lt;/div&gt;
+&lt;div class=&quot;title&quot;&gt;&lt;span class=&quot;h1 nowrap&quot;&gt;Dresses of Africa,&lt;br&gt;Oceania &amp;amp; Asia&lt;/span&gt;&lt;/div&gt;
+&lt;a class=&quot;banner-button&quot; href=&quot;#&quot;&gt;SHOP NOW&lt;/a&gt;
+&lt;/div&gt;&lt;/div&gt;&lt;/div&gt;&lt;/div&gt;&lt;div data-text-position=&quot;bottom_left&quot; data-text-animate=&quot;slideInRight&quot; class=&quot;item slideInRight&quot;&gt;&lt;a class=&quot;item-image&quot; href=&quot;&quot; style=&quot;background-image:url(pub/media/wysiwyg/slider/h1sld2.jpg)&quot;&gt;&lt;img class=&quot;img-fluid&quot; src=&quot;pub/media/wysiwyg/slider/h1sld2.jpg&quot; alt=&quot;&quot;&gt;&lt;/a&gt;&lt;div class=&quot;slide-text bottom_left&quot;&gt;&lt;div class=&quot;inner-text&quot;&gt;&lt;div class=&quot;slide-content&quot;&gt;
+&lt;div class=&quot;subtitle&quot;&gt;&lt;span class=&quot;count&quot;&gt;02&lt;/span&gt;&lt;span class=&quot;text&quot;&gt;For men&lt;/span&gt;&lt;/div&gt;
+&lt;div class=&quot;title&quot;&gt;&lt;span class=&quot;h1 nowrap&quot;&gt;Meet the trends&lt;br&gt; of the season&lt;/span&gt;&lt;/div&gt;
+&lt;a class=&quot;banner-button&quot; href=&quot;#&quot;&gt;SHOP NOW&lt;/a&gt;
+&lt;/div&gt;&lt;/div&gt;&lt;/div&gt;&lt;/div&gt;&lt;div data-text-position=&quot;bottom_left&quot; data-text-animate=&quot;slideInDown&quot; class=&quot;item slideInDown&quot;&gt;&lt;a class=&quot;item-image&quot; href=&quot;&quot; style=&quot;background-image:url(pub/media/wysiwyg/slider/h1sld3.jpg)&quot;&gt;&lt;img class=&quot;img-fluid&quot; src=&quot;pub/media/wysiwyg/slider/h1sld3.jpg&quot; alt=&quot;&quot;&gt;&lt;/a&gt;&lt;div class=&quot;slide-text bottom_left&quot;&gt;&lt;div class=&quot;inner-text&quot;&gt;&lt;div class=&quot;slide-content&quot;&gt;
+&lt;div class=&quot;subtitle&quot;&gt;&lt;span class=&quot;count&quot;&gt;03&lt;/span&gt;&lt;span class=&quot;text&quot;&gt;Accessories&lt;/span&gt;&lt;/div&gt;
+&lt;div class=&quot;title&quot;&gt;&lt;span class=&quot;h1 nowrap&quot;&gt;New collection&lt;br&gt; A-W ss18&lt;/span&gt;&lt;/div&gt;
+&lt;a class=&quot;banner-button&quot; href=&quot;#&quot;&gt;SHOP NOW&lt;/a&gt;
+&lt;/div&gt;&lt;/div&gt;&lt;/div&gt;&lt;/div&gt;" navtemple="1" effect="1" template="widget/owl_slider.phtml"}}]]></block_content>
+	</block>
+	<promo_banner>
+		<item>
+			<title><![CDATA[Amely Home 1 Spring Summer Collection]]></title>
+			<filename><![CDATA[/h/1/h1bn1.jpg]]></filename>
+			<url><![CDATA[]]></url>
+			<button><![CDATA[]]></button>
+			<text_align><![CDATA[middle-left]]></text_align>
+			<content><![CDATA[<div class="text-center pd-left-45 pd-right-45">
+<h4>Spring Summer<br> Collection</h4>
+<a class="banner-button" href="#">SHOP NOW</a>
+</div>]]></content>
+			<effect><![CDATA[zoom]]></effect>
+			<custom_class><![CDATA[]]></custom_class>
+			<status><![CDATA[1]]></status>
+			<identifier><![CDATA[amely_home_1_sping_summer_collection]]></identifier>
+		</item>
+		<item>
+			<title><![CDATA[Amely Home 1 Cute Clothers]]></title>
+			<filename><![CDATA[/h/1/h1bn2.jpg]]></filename>
+			<url><![CDATA[]]></url>
+			<button><![CDATA[]]></button>
+			<text_align><![CDATA[]]></text_align>
+			<content><![CDATA[<div class="text-center">
+<h4>Cute Clothers<br> For Small People</h4>
+<a class="banner-button" href="#">SHOP NOW</a>
+</div>]]></content>
+			<effect><![CDATA[zoom]]></effect>
+			<custom_class><![CDATA[]]></custom_class>
+			<status><![CDATA[1]]></status>
+			<identifier><![CDATA[amely_home_1_cute_clothers]]></identifier>
+		</item>
+		<item>
+			<title><![CDATA[Amely Home 1 Shoes Collection]]></title>
+			<filename><![CDATA[/h/1/h1bn3.jpg]]></filename>
+			<url><![CDATA[]]></url>
+			<button><![CDATA[]]></button>
+			<text_align><![CDATA[middle-right]]></text_align>
+			<content><![CDATA[<div class="text-center pd-left-45 pd-right-45">
+<h4>S-S 2018<br> Shoes Collection</h4>
+<a class="banner-button" href="#">SHOP NOW</a>
+</div>]]></content>
+			<effect><![CDATA[zoom]]></effect>
+			<custom_class><![CDATA[]]></custom_class>
+			<status><![CDATA[1]]></status>
+			<identifier><![CDATA[amely_home_1_shoes_collection]]></identifier>
+		</item>
+	</promo_banner>
+
+</home>

@@ -1,0 +1,19 @@
+<?php
+/**
+ * Copyright © 2016 Magento. All rights reserved.
+ * See COPYING.txt for license details.
+ */
+
+// @codingStandardsIgnoreFile
+
+/**
+ * Product media data template
+ *
+ * @var $block \Magento\Catalog\Block\Product\View
+ */
+?>
+
+<?php $_product = $block->getProduct(); ?>
+<div class="product-detail-name">
+	<span class="h1"><?php echo $block->stripTags($_product->getName(), null, true); ?></span>
+</div>

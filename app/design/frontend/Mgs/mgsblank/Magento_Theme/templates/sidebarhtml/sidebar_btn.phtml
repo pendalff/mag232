@@ -1,0 +1,29 @@
+ <?php
+/**
+ * Copyright © 2016 Magento. All rights reserved.
+ * See COPYING.txt for license details.
+ */
+?>
+<div class="sidebar-action-mobile--left">
+	<button class="btn btn-navbar navbar_sidebar" id="navbar_sidebar">
+		<i class="icon pe-7s-edit" ></i>
+	</button>
+</div>
+
+<script type="text/javascript">
+	require([
+		'jquery'
+	], function($){
+		$("#navbar_sidebar").click(function () { 
+			$('body').addClass('active-sidebar');
+		});
+		
+		$(document).mouseup(function(e) {
+			var ctContentSidebar = $(".sidebar");
+			if (!ctContentSidebar.is(e.target) && ctContentSidebar.has(e.target).length === 0) {
+				$('body').removeClass('active-sidebar');
+				$('body').removeClass('active-sidebar-right');
+			}
+		});
+	});
+</script>

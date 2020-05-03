@@ -1,0 +1,22 @@
+ <?php
+/**
+ * Copyright © 2016 Magento. All rights reserved.
+ * See COPYING.txt for license details.
+ */
+?>
+
+<div class="sidebar-mobile--title">
+	<h3><?php echo __('Sidebar'); ?></h3>
+	<button type="button" class="close-sidebar-action"><span class="ti-close"></span></button>
+</div>
+
+<script type="text/javascript">
+	require([
+		'jquery'
+	], function($){
+		$(".close-sidebar-action").click(function () { 
+			$('body').removeClass('active-sidebar-right');
+			$('body').removeClass('active-sidebar');
+		});
+	});
+</script>

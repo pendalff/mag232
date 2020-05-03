@@ -1,0 +1,61 @@
+<?xml version="1.0"?>
+<!--
+/**
+ * Copyright © 2016 Magento. All rights reserved.
+ * See COPYING.txt for license details.
+ */
+-->
+<page layout="1column" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:framework:View/Layout/etc/page_configuration.xsd">
+    <body>
+		<referenceBlock name="head.additional">
+			<block class="Magento\Framework\View\Element\Template" name="script.sharethis" template="MGS_Mpanel::sharethis/sharethis_script.phtml" ifconfig="mpanel/share_config/share_product_detail"/>
+		</referenceBlock>
+		
+		<referenceContainer name="content">
+			<container name="product.detail.wrapper" htmlTag="div" htmlClass="row row-detail-product" before="-"/>
+			<block class="Magento\Catalog\Block\Product\View" name="product.info.name" template="product/view/name.phtml" />
+		</referenceContainer>
+		
+		<move element="product.info.media" destination="product.detail.wrapper" />
+		<move element="product.info.main" destination="product.detail.wrapper" />
+		
+		<move element="product.info.review" destination="product.info.main" before="-" />
+		
+		<move element="product.info.overview" destination="product.info.main" after="product.info.price" />
+		
+		<move element="product.info.name" destination="product.info.main" after="product.info.review" />
+		
+		<move element="product.info.addto" destination="product.info.addtocart" />
+		
+		<referenceBlock name="product.info.addtocart.additional">
+			<block class="Magento\Catalog\Block\Product\View" name="product.info.addto.additional" template="product/view/addto.phtml">
+				<block class="Magento\Catalog\Block\Product\View" name="product.info.mailto.additional" template="product/view/mailto.phtml"/>
+			</block>
+		</referenceBlock>
+		
+		<move element="product.info.mailto" destination="product.info.addto" />
+		
+		<referenceContainer name="product.info.main">
+			<container name="product.info.list.additional" htmlTag="div" htmlClass="product-info-list-additional" after="-"/>
+			
+			<block class="Magento\Framework\View\Element\Template" name="product.detail.sharethis" template="MGS_Mpanel::sharethis/sharethis.phtml" ifconfig="mpanel/share_config/share_product_detail" after="product.info.list.additional" />
+		</referenceContainer>
+		
+		<move element="product.info.stock.sku" destination="product.info.list.additional" />
+		
+		<referenceBlock name="catalog.product.related">
+			<arguments>
+				<argument name="position" xsi:type="string">maincontent</argument>
+			</arguments>
+		</referenceBlock>
+		
+		<referenceContainer name="sidebar.additional">
+            <block ifconfig="mpanel/product_details/related_sidebar" class="Magento\Catalog\Block\Product\ProductList\Related" after="product.brand.img.sidebar" name="catalog.product.related.sidebar" template="Magento_Catalog::product/list/items.phtml">
+                <arguments>
+                    <argument name="type" xsi:type="string">related</argument>
+                    <argument name="position" xsi:type="string">sidebar</argument>
+                </arguments>
+            </block>
+        </referenceContainer>
+    </body>
+</page>
