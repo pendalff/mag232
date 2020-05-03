@@ -350,10 +350,9 @@ class Widget extends Template{
 			}
 
 			$content = json_decode($content, true);
-			
 			$i=0;
 			$limit = $this->getLimit();
-			if(count($content['data']) > 0){
+			if(isset($content['data']) && count($content['data']) > 0){
 				foreach($content['data'] as $data){
 					$i++;
 					$result[] = [
